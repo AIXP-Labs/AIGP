@@ -1,0 +1,15 @@
+{
+  "schema": "ainp.v1.0.0.generation_space",
+  "generation_space": {
+    "id": "gs_bad_hash",
+    "title": "space with stale hash",
+    "generations": [
+      {
+        "ref": "../../../examples/file_family/whitepaper.generation.json",
+        "id": "g_whitepaper_ainp",
+        "sha256": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+        "status": "draft"
+      }
+    ]
+  }
+}

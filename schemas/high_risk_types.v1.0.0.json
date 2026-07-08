@@ -1,0 +1,24 @@
+{
+  "schema": "ainp.v1.0.0.high_risk_types",
+  "description": "Versioned single source of truth for high-risk generation. artifact_types = carrier forms that are high-risk regardless of tags; validator G6 matches them after case/separator normalization (whitespace, _ and - are ignored). risk_tags = declared risk semantics; each tag carries enforcement trigger bits mapped to rules: approval_required -> G6 (governance.approval_required must be true), consent_required -> G4 (at least one consent-bearing input), disclosure_required -> G8 (disclosure_policy.ai_generated_disclosure_required must be true). Tags are DECLARED by the plan author; omission is not statically detectable (external review is the backstop).",
+  "artifact_types": ["deepfake", "voice_clone", "biometric_model"],
+  "risk_tags": [
+    { "id": "impersonation",      "approval_required": true, "consent_required": true,  "disclosure_required": true },
+    { "id": "likeness",           "approval_required": true, "consent_required": true,  "disclosure_required": true },
+    { "id": "biometric",          "approval_required": true, "consent_required": true,  "disclosure_required": true },
+    { "id": "minor_related",      "approval_required": true, "consent_required": true,  "disclosure_required": true },
+    { "id": "medical_advice",     "approval_required": true, "consent_required": false, "disclosure_required": true },
+    { "id": "legal_advice",       "approval_required": true, "consent_required": false, "disclosure_required": true },
+    { "id": "financial_advice",   "approval_required": true, "consent_required": false, "disclosure_required": true },
+    { "id": "mass_persuasion",    "approval_required": true, "consent_required": false, "disclosure_required": true },
+    { "id": "election_political", "approval_required": true, "consent_required": false, "disclosure_required": true },
+    { "id": "security_exploit",   "approval_required": true, "consent_required": false, "disclosure_required": false },
+    { "id": "cbrn",               "approval_required": true, "consent_required": false, "disclosure_required": false },
+    { "id": "self_harm",          "approval_required": true, "consent_required": false, "disclosure_required": true },
+    { "id": "sexual_abuse_exploitation", "approval_required": true, "consent_required": true, "disclosure_required": true },
+    { "id": "personal_data",      "approval_required": true, "consent_required": true,  "disclosure_required": false },
+    { "id": "public_safety",      "approval_required": true, "consent_required": false, "disclosure_required": true },
+    { "id": "regulated_domain",   "approval_required": true, "consent_required": false, "disclosure_required": true },
+    { "id": "deceptive_content",  "approval_required": true, "consent_required": false, "disclosure_required": true }
+  ]
+}

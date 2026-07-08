@@ -1,0 +1,119 @@
+{
+  "schema": "ainp.v1.0.0.standard.ecosystem",
+  "standard": {
+    "id": "ainp_standard.ecosystem",
+    "protocol": "AINP v1.0.0",
+    "authority": "ainp.dev",
+    "version": "1.0.0",
+    "status": "active",
+    "extends": "AINP_Standard.core.json",
+    "summary": "Ecosystem and distribution standard for complete AINP project packages.",
+    "kind": "standard_library_reference",
+    "runtime_boundary": "Non-executable standard data. This file is not an AISOP flow, not an AIAP program and not a runtime trust proof.",
+    "normative_sources": [
+      "specification/AINP_Protocol.md#41-ainp-project-package",
+      "specification/AINP_Protocol.md#9-feedback-and-generation-space",
+      "tools/ainp_project_check.py",
+      "tools/ainp_release_check.py"
+    ],
+    "package_profile": {
+      "name": "complete_ainp_project",
+      "directory_pattern": "<name>_ainp/",
+      "entry_file": "AINP.md",
+      "plan_folder": "ainp/",
+      "references_folder": "ainp/references/",
+      "content_folder": "<name>/",
+      "required_loop": [
+        "plan guides content through content_architecture and acceptance_criteria",
+        "report binds artifacts back to the plan and content files",
+        "feedback binds content review back to the same generation id"
+      ]
+    },
+    "distribution_requirements": [
+      {
+        "id": "EC1",
+        "summary": "Package shape is self-describing.",
+        "checks": [
+          "P1",
+          "P2",
+          "P3",
+          "P4",
+          "P5"
+        ]
+      },
+      {
+        "id": "EC2",
+        "summary": "Plan and content are structurally co-equal.",
+        "checks": [
+          "G16",
+          "P10"
+        ]
+      },
+      {
+        "id": "EC3",
+        "summary": "Report evidence covers planned content files.",
+        "checks": [
+          "R3",
+          "R8",
+          "R10",
+          "P7",
+          "P8"
+        ]
+      },
+      {
+        "id": "EC4",
+        "summary": "Feedback closes the plan-content revision loop.",
+        "checks": [
+          "FB1",
+          "P6"
+        ]
+      },
+      {
+        "id": "EC5",
+        "summary": "Release is structural and evidence-chain validation only.",
+        "checks": [
+          "ainp_release_check.py",
+          "ainp_project_check.py"
+        ],
+        "boundary": "No registry approval, package trust, legal compliance or content truth is implied."
+      },
+      {
+        "id": "EC6",
+        "summary": "Optional reference materials are indexed without becoming content or trust roots.",
+      "checks": [
+        "P11"
+      ],
+      "boundary": "Protocol snapshots, templates, briefs and research files under ainp/references/ are integrity snapshots only. external_uri entries are not fetched and cannot carry local sha256 anchors."
+    }
+    ],
+    "binding_fields": {
+      "plan_to_content": "generation.content_architecture.files[].id/path/points[]",
+      "report_to_plan": "generationreport.plan_ref.sha256",
+      "report_to_content": "generationreport.artifacts[].file_id",
+      "feedback_to_plan": "generationfeedback.generation_id",
+      "feedback_to_content": "generationfeedback.issues[].file_id / point_id",
+      "reference_to_plan": "generation.inputs[].source/evidence_ref -> reference_manifest.references[].id"
+    },
+    "release_profile": {
+      "commands": [
+        "python -B tools/ainp_release_check.py <plan> --report <report> --project-root <project>",
+        "python -B tools/ainp_project_check.py <name>_ainp/"
+      ],
+      "requires": [
+        "bundled schema gate passes",
+        "plan release validation passes",
+        "report release validation passes",
+        "artifact hashes recompute in sandbox",
+        "overall.conformant == true",
+        "project package paths and feedback loop are aligned",
+        "declared reference manifests pass P11"
+      ]
+    },
+    "explicit_non_goals": [
+      "No runtime extension model.",
+      "No AIAP runtime or agent-manifest structure.",
+      "No performance standard in v1.0.0.",
+      "No trust registry or signature proof in this standard file."
+    ]
+  }
+}

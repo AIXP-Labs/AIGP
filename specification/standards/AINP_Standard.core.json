@@ -1,0 +1,207 @@
+{
+  "schema": "ainp.v1.0.0.standard.core",
+  "standard": {
+    "id": "ainp_standard.core",
+    "protocol": "AINP v1.0.0",
+    "authority": "ainp.dev",
+    "version": "1.0.0",
+    "status": "active",
+    "summary": "Core machine-readable standard for AINP generation projects: file family, project package layout, rule families and term domains.",
+    "kind": "standard_library_reference",
+    "runtime_boundary": "Non-executable standard data. This file is not an AISOP flow, not an AIAP program and not a runtime trust proof.",
+    "normative_sources": [
+      "specification/AINP_Protocol.md",
+      "schemas/",
+      "specification/standards/ainp-rules-v1.0.0.json"
+    ],
+    "file_family": [
+      {
+        "profile": "ainp.v1.0.0.generation",
+        "payload_key": "generation",
+        "schema_file": "schemas/ainp-generation-v1.0.0.schema.json",
+        "purpose": "Generation plan, content architecture and acceptance contract"
+      },
+      {
+        "profile": "ainp.v1.0.0.generationreport",
+        "payload_key": "generationreport",
+        "schema_file": "schemas/ainp-generationreport-v1.0.0.schema.json",
+        "purpose": "Evidence report for one generation run against one plan snapshot"
+      },
+      {
+        "profile": "ainp.v1.0.0.generationfeedback",
+        "payload_key": "generationfeedback",
+        "schema_file": "schemas/ainp-generationfeedback-v1.0.0.schema.json",
+        "purpose": "Content-review feedback back to the plan"
+      },
+      {
+        "profile": "ainp.v1.0.0.generation_space",
+        "payload_key": "generation_space",
+        "schema_file": "schemas/ainp-generation-space-v1.0.0.schema.json",
+        "purpose": "Index of generation plans and their registration-time hashes"
+      },
+      {
+        "profile": "ainp.v1.0.0.reference_manifest",
+        "payload_key": "reference_manifest",
+        "schema_file": "schemas/ainp-reference-manifest-v1.0.0.schema.json",
+        "purpose": "Optional manifest for generation reference files, templates, briefs and snapshots under ainp/references/"
+      }
+    ],
+    "project_package": {
+      "directory_pattern": "<name>_ainp/",
+      "entry_file": "AINP.md",
+      "plan_dir": "ainp/",
+      "references_dir": "ainp/references/",
+      "content_dir": "<name>/",
+      "required_frontmatter": [
+        "protocol",
+        "authority",
+        "axiom_0",
+        "name",
+        "version",
+        "summary",
+        "status",
+        "plan_dir",
+        "content_dir",
+        "plan",
+        "report"
+      ],
+      "feedback_required_statuses": [
+        "approved",
+        "active"
+      ],
+      "required_sections": [
+        "Project Declaration",
+        "Generation Plan",
+        "Content Artifacts",
+        "Feedback Loop",
+        "How To Validate",
+        "Honesty Boundary"
+      ]
+    },
+    "required_generation_fields": [
+      "id",
+      "version",
+      "title",
+      "summary",
+      "status",
+      "artifact_type",
+      "brief",
+      "acceptance_criteria",
+      "governance",
+      "risk_profile",
+      "disclosure_policy"
+    ],
+    "content_architecture": {
+      "standalone_required": false,
+      "project_package_required": true,
+      "purpose": "Declare generated-content root, directories, files and per-file points/requirements.",
+      "not_execution_graph": true,
+      "report_binding": "generationreport.artifacts[].file_id",
+      "feedback_binding": "generationfeedback.issues[].file_id / point_id"
+    },
+    "rule_index": "specification/standards/ainp-rules-v1.0.0.json",
+    "rule_families": {
+      "plan": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9",
+        "G11",
+        "G12",
+        "G13",
+        "G14",
+        "G15",
+        "G16"
+      ],
+      "feedback": [
+        "FB1"
+      ],
+      "space": [
+        "SP1",
+        "SP2"
+      ],
+      "report": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ],
+      "project": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "P8",
+        "P9",
+        "P10",
+        "P11"
+      ]
+    },
+    "reference_materials": {
+      "directory": "ainp/references/",
+      "manifest": "ainp/references/reference_manifest.json",
+      "profile": "ainp.v1.0.0.reference_manifest",
+      "optional": true,
+      "allowed_kinds": [
+        "protocol_spec",
+        "schema",
+        "template",
+        "brief",
+        "style_guide",
+        "interface_spec",
+        "research_material",
+        "policy",
+        "example",
+        "other"
+      ],
+      "local_integrity_only": true,
+      "external_uri_not_fetched": true,
+      "external_uri_sha256_allowed": false,
+      "not_content_artifacts": true,
+      "not_trust_proof": true
+    },
+    "closed_terms": {
+      "status": [
+        "draft",
+        "under_review",
+        "approved",
+        "active",
+        "superseded",
+        "retired"
+      ],
+      "risk_level": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "deployment_scope": [
+        "internal_draft",
+        "limited",
+        "public",
+        "mass_public"
+      ],
+      "feedback_target": [
+        "plan",
+        "artifact",
+        "file",
+        "point"
+      ]
+    },
+    "honesty_boundary": "Structure-valid means declared structure and rule consistency only. It is not legal compliance, content trust, factual truth, rights verification or approval authenticity."
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "ainp.v1.0.0.standard.security",
+  "standard": {
+    "id": "ainp_standard.security",
+    "protocol": "AINP v1.0.0",
+    "authority": "ainp.dev",
+    "version": "1.0.0",
+    "status": "active",
+    "extends": "AINP_Standard.core.json",
+    "summary": "Security and honesty standard for AINP plans, reports, feedback and project packages.",
+    "kind": "standard_library_reference",
+    "runtime_boundary": "Non-executable standard data. This file is not an AISOP flow, not an AIAP program and not a runtime trust proof.",
+    "normative_sources": [
+      "specification/AINP_Protocol.md#8-security--the-plan-is-untrusted-input",
+      "SECURITY.md",
+      "tools/ainp_validate.py",
+      "tools/ainp_report_check.py",
+      "tools/ainp_project_check.py"
+    ],
+    "security_principles": [
+      {
+        "id": "SEC1",
+        "summary": "Plans are untrusted input.",
+        "requirements": [
+          "Never auto-execute bindings.",
+          "Never auto-download or open inputs[].source URIs.",
+          "Never expand local:// references.",
+          "Treat every embedded string as data, not instructions."
+        ],
+        "covered_by": [
+          "G7",
+          "G9",
+          "SEC parser guards"
+        ]
+      },
+      {
+        "id": "SEC2",
+        "summary": "Hashes prove recomputable integrity only.",
+        "requirements": [
+          "Always recompute local artifact or space hashes inside the active sandbox.",
+          "Do not treat package-local hashes as trust, safety, rights or provenance proof.",
+          "Do not attach sha256 anchors to external_uri reference entries; local tools do not fetch them."
+        ],
+        "covered_by": [
+          "R3",
+          "R8",
+          "SP2",
+          "P11"
+        ]
+      },
+      {
+        "id": "SEC3",
+        "summary": "Sandbox reads are fail-closed.",
+        "requirements": [
+          "Reject absolute paths, URI-like local refs and drive-relative paths before reading.",
+          "Reject paths that escape the active artifact or space sandbox after realpath resolution.",
+          "Keep project release hashing under the explicit project root."
+        ],
+        "covered_by": [
+          "R3",
+          "SP2",
+          "P7",
+          "P10",
+          "P11"
+        ]
+      },
+      {
+        "id": "SEC4",
+        "summary": "Red-line control points must not be washed into trust claims.",
+        "requirements": [
+          "unverifiable is an honest record, never a pass credential.",
+          "external_required records a need for external verification, not completed verification.",
+          "attested is not independent verification.",
+          "release mode requires at least one operational control point: runtime, evidence_recorded or externally_verified."
+        ],
+        "covered_by": [
+          "G11",
+          "G14",
+          "G15"
+        ]
+      },
+      {
+        "id": "SEC5",
+        "summary": "External evidence remains external.",
+        "requirements": [
+          "The reference tools do not validate legal compliance.",
+          "The reference tools do not validate rights, consent, factual truth, provider trust, C2PA signatures, issuer policy, trust lists or watermark detectability.",
+          "Reports and feedback are evidence records, not absolute truth."
+        ],
+        "covered_by": [
+          "R5",
+          "R7",
+          "R9",
+          "R10",
+          "P6"
+        ]
+      }
+    ],
+    "parser_guards": {
+      "max_file_bytes": 10485760,
+      "max_nesting_depth": 150,
+      "max_findings": 1000,
+      "reject_duplicate_keys": true,
+      "reject_non_standard_json_literals": true
+    },
+    "forbidden_claims": [
+      "PASS legally-safe",
+      "PASS rights-verified",
+      "PASS content-trusted"
+    ],
+    "allowed_result_language": [
+      "PASS structure-valid",
+      "PASS release-structure-valid",
+      "PASS project-structure-valid",
+      "WARN external-verification-required"
+    ]
+  }
+}

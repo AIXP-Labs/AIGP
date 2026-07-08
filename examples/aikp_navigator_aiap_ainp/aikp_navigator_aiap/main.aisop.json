@@ -1,0 +1,15 @@
+{
+  "schema": "aisop.example.flow.v1.0.0",
+  "name": "aikp_navigator_aiap.main",
+  "entry": "resolve_topic",
+  "nodes": [
+    {
+      "id": "resolve_topic",
+      "kind": "tool",
+      "tool": "tools/resolve_topic.py",
+      "input": "topic",
+      "output": "aikp_navigation_request"
+    }
+  ],
+  "execution_boundary": "Candidate flow descriptor only. AINP records this generated artifact but does not execute it."
+}

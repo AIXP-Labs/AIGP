@@ -1,0 +1,215 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_landing_page_launch",
+    "version": "1.0.0",
+    "title": "Product launch landing page",
+    "summary": "A public mass-distribution landing page for a product launch; mass_public deployment scope triggers the human approval gate even with no risk tags.",
+    "status": "draft",
+    "source": "hybrid",
+    "artifact_type": "landing_page",
+    "brief": {
+      "goal": "Convert visitors into trial signups without deceptive claims",
+      "tone": "clear, benefit-oriented, truthful",
+      "requirements": [
+        "hero section with one factual value proposition",
+        "no fabricated testimonials or statistics",
+        "visible AI-generation disclosure in the page footer"
+      ]
+    },
+    "audience": {
+      "primary": "prospective users"
+    },
+    "structure": [
+      {
+        "id": "s1",
+        "title": "Hero",
+        "kind": "section"
+      },
+      {
+        "id": "s2",
+        "title": "Features",
+        "kind": "section"
+      },
+      {
+        "id": "s3",
+        "title": "Signup call-to-action",
+        "kind": "component"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "in1",
+        "kind": "asset",
+        "source": {
+          "type": "local",
+          "uri": "local://brand/logo.svg"
+        },
+        "rights": {
+          "status": "owned",
+          "license": null,
+          "holder": "operator_01",
+          "evidence_ref": null
+        },
+        "provenance": {
+          "status": "retrieved",
+          "retrieved_at": "2026-07-01",
+          "sha256": null,
+          "verified_by": null
+        },
+        "privacy": {
+          "contains_personal_data": false
+        },
+        "consent": null
+      }
+    ],
+    "rights_policy": {
+      "default_status": "owned",
+      "reuse_requires": [
+        "owned",
+        "licensed",
+        "open_license"
+      ]
+    },
+    "risk_profile": {
+      "risk_level": "medium",
+      "risk_tags": [],
+      "deployment_scope": "mass_public",
+      "intended_audience": "general public (advisory)",
+      "rationale": "Mass-public distribution triggers the approval gate even without risk tags"
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "type": "approval",
+        "category": "sovereignty",
+        "scope": "distribution",
+        "severity": "fail",
+        "condition": "deployment_scope is mass_public (declarative text; validators check existence only).",
+        "description": "Mass-public delivery must pass the HSAW human sovereignty gate.",
+        "enforced_by": [
+          {
+            "stage": "distribution_gate",
+            "mechanism": "runtime:hsaw_gate",
+            "assurance": "runtime",
+            "limitations": "Runtime gate; declaration existence is all the validator can prove."
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "type": "hard",
+        "category": "factuality",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "No fabricated testimonials, statistics, or product claims.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:acceptance/a2",
+            "assurance": "evidence_recorded"
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "type": "disclosure",
+        "category": "transparency",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "Page footer must carry a human-visible AI-generation disclosure.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:disclosure",
+            "assurance": "evidence_recorded"
+          }
+        ]
+      }
+    ],
+    "acceptance_criteria": [
+      {
+        "id": "a1",
+        "description": "All declared output formats are produced",
+        "severity": "fail",
+        "verification": {
+          "method": "static",
+          "check_id": "structure.sections_nonempty",
+          "tool": "ainp_report_check"
+        }
+      },
+      {
+        "id": "a2",
+        "description": "A human reviewer confirms all claims on the page are factual",
+        "severity": "fail",
+        "verification": {
+          "method": "human",
+          "spec": "human review of every quantitative or comparative claim"
+        }
+      }
+    ],
+    "disclosure_policy": {
+      "ai_generated_disclosure_required": true,
+      "human_visible_label_required": true,
+      "machine_readable_metadata_required": true,
+      "content_credential_required": false,
+      "removal_prohibited": true
+    },
+    "governance": {
+      "status": "draft",
+      "risk_level": "medium",
+      "review_required": true,
+      "approval_required": true,
+      "created_by": "operator_01"
+    },
+    "permission": {
+      "can_generate_artifact": true
+    },
+    "content_architecture": {
+      "root": "out/g_landing_page_launch/",
+      "directories": [
+        {
+          "id": "dir_landing_page",
+          "path": "out/g_landing_page_launch/",
+          "purpose": "Generated landing page bundle"
+        }
+      ],
+      "files": [
+        {
+          "id": "file_landing_index_html",
+          "path": "out/g_landing_page_launch/index.html",
+          "type": "html",
+          "mime": "text/html",
+          "role": "primary_artifact",
+          "required": true,
+          "summary": "Public landing page entry file",
+          "points": [
+            {
+              "id": "p1",
+              "order": 1,
+              "title": "Declared sections",
+              "requirements": [
+                "Include hero, features and signup call-to-action sections."
+              ],
+              "acceptance_refs": [
+                "a1"
+              ]
+            },
+            {
+              "id": "p2",
+              "order": 2,
+              "title": "Factual claims and disclosure",
+              "requirements": [
+                "Avoid fabricated testimonials, statistics or product claims.",
+                "Include the required AI-generation disclosure in the footer."
+              ],
+              "acceptance_refs": [
+                "a2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

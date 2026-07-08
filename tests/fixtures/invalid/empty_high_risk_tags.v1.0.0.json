@@ -1,0 +1,6 @@
+{
+  "schema": "ainp.v1.0.0.high_risk_types",
+  "description": "Teeth fixture: risk_tags is empty. The high-risk semantic tag table must not silently degrade to an empty domain.",
+  "artifact_types": ["deepfake"],
+  "risk_tags": []
+}

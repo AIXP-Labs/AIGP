@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ainp.dev/schemas/ainp-generation-space-v1.0.0.schema.json",
+  "title": "AINP generation space (ainp.v1.0.0.generation_space)",
+  "description": "Index/collection of generation plans. Entry sha256 proves registration-time integrity only; consumers must re-hash local refs inside the space-file sandbox (SP2). Absolute, URI-like, drive-relative, and sandbox-escaping refs are not read. Structural rules SP1/SP2 are enforced by tools/ainp_validate.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "generation_space"],
+  "properties": {
+    "schema": { "const": "ainp.v1.0.0.generation_space" },
+    "generation_space": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "generations"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "generations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ref", "sha256"],
+            "properties": {
+              "ref": { "type": "string" },
+              "id": { "type": "string" },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "status": { "enum": ["draft", "under_review", "approved", "active", "superseded", "retired"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_nan",
+    "confidence": NaN,
+    "content_architecture": {
+      "root": "out/",
+      "directories": [
+        {
+          "id": "dir_out",
+          "path": "out/",
+          "purpose": "Generated fixture output"
+        }
+      ],
+      "files": [
+        {
+          "id": "file_fixture_artifact",
+          "path": "out/fixture_artifact.txt",
+          "type": "text",
+          "mime": "text/plain",
+          "role": "primary_artifact",
+          "required": true,
+          "summary": "Generic content artifact for validator fixture coverage",
+          "points": [
+            {
+              "id": "p1",
+              "order": 1,
+              "title": "Fixture content",
+              "requirements": [
+                "Declare at least one concrete content point."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

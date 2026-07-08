@@ -1,0 +1,76 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_rights_consent_no_record",
+    "version": "1.0.0",
+    "title": "Stylized avatar from a user-submitted photo (consent declared needed, never recorded)",
+    "summary": "Teeth fixture: inputs[0].rights.status=consent_required but the input carries no consent object with required=true — declaring that consent is needed without recording it must FAIL G4 (AINP_E_G4_RIGHTS_CONSENT_NO_RECORD).",
+    "status": "draft",
+    "source": "agent",
+    "artifact_type": "image",
+    "artifact_subtype": "avatar",
+    "brief": {
+      "goal": "Generate a stylized avatar from the submitted reference photo"
+    },
+    "inputs": [
+      {
+        "id": "in1",
+        "kind": "portrait_reference",
+        "source": {
+          "type": "local",
+          "uri": "local://uploads/photo.jpg"
+        },
+        "rights": {
+          "status": "consent_required",
+          "license": null,
+          "holder": "person_02",
+          "evidence_ref": null
+        },
+        "provenance": {
+          "status": "retrieved",
+          "retrieved_at": "2026-07-05",
+          "sha256": null,
+          "verified_by": null
+        },
+        "privacy": {
+          "contains_personal_data": true
+        },
+        "consent": null
+      }
+    ],
+    "risk_profile": {
+      "risk_level": "low",
+      "risk_tags": [],
+      "deployment_scope": "internal_draft",
+      "rationale": "Isolation fixture for the G4 rights-status consent path: no risk tags, so only rights.status=consent_required fires the rule"
+    },
+    "acceptance_criteria": [
+      {
+        "id": "a1",
+        "description": "Disclosure policy declared",
+        "severity": "fail",
+        "verification": {
+          "method": "static",
+          "check_id": "disclosure.policy_declared",
+          "tool": "ainp_report_check"
+        }
+      }
+    ],
+    "disclosure_policy": {
+      "ai_generated_disclosure_required": true,
+      "human_visible_label_required": true,
+      "machine_readable_metadata_required": true,
+      "content_credential_required": false,
+      "removal_prohibited": true
+    },
+    "governance": {
+      "status": "draft",
+      "review_required": false,
+      "approval_required": false,
+      "created_by": "operator_01"
+    },
+    "permission": {
+      "can_generate_artifact": true
+    }
+  }
+}

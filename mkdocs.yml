@@ -1,0 +1,82 @@
+site_name: AINP — AI Neogenesis Protocol
+site_description: AI Neogenesis Protocol — machine-readable, governable generation plans with hash-locked acceptance evidence, under HSAW / Axiom 0
+site_url: https://ainp.dev
+repo_url: https://github.com/AIXP-Labs/AINP
+repo_name: AINP
+
+# English narrative documentation. Chinese docs live in ../docs_cn/;
+# the normative specification lives in ../specification/.
+docs_dir: docs
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Specification: specification.md
+  - Topics:
+    - What is AINP?: topics/what-is-ainp.md
+    - Project Package: topics/project-package.md
+    - Security Model: topics/security-model.md
+  - Guides:
+    - Getting Started: guides/getting-started.md
+    - First AINP Project: guides/first-ainp-project.md
+    - Package Maintenance: guides/package-maintenance.md
+  - Integrations:
+    - AIXP Generation Lifecycle: integrations/aixp-generation-lifecycle.md
+  - Reference:
+    - Conformance Rules: reference/conformance-rules.md
+    - Standards Reference: reference/standards.md
+    - Validator Coverage: reference/validator-coverage.md
+    - Release Evidence Matrix: reference/release-evidence-matrix.md
+    - Error Codes: reference/error-codes.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AIXP-Labs

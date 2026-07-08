@@ -1,0 +1,13 @@
+{
+  "descriptor_profile": "ainp.example.binding_descriptor.v1.0.0",
+  "kind": "aisop_candidate_binding",
+  "status": "non_executable_example",
+  "purpose": "Describe the candidate AISOP realization target named by the AINP plan.",
+  "target_artifact": "whitepaper/whitepaper.md",
+  "execution_policy": {
+    "auto_execute": false,
+    "requires_explicit_authorization": true,
+    "runtime_required": "AISOP-compatible runtime"
+  },
+  "honesty_boundary": "This file exists so G9 can stat-check a local binding target in the complete project example. It is not an AISOP runtime proof, not an executable program, and not a trust certificate."
+}

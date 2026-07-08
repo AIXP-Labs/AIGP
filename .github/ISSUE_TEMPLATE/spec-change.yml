@@ -1,0 +1,45 @@
+name: Specification change
+description: Propose a normative AINP specification, schema, or conformance-rule change.
+title: "spec-change: "
+labels: ["spec-change"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for changes that affect `specification/`, `schemas/`, conformance rules, or release-blocking behavior. Convenience-only documentation issues can use a normal issue.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or evidence
+      description: Describe the concrete failure, interoperability need, compliance driver, or ambiguity that motivates the change.
+      placeholder: "A minimal *.generation.json, tool output, external requirement, or concrete example is preferred."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: State the new or changed rule, field, schema shape, or wording.
+    validations:
+      required: true
+  - type: textarea
+    id: axiom0
+    attributes:
+      label: Axiom 0 impact
+      description: Explain the impact on human approval gates, consent, disclosure, red-line assurance, untrusted inputs, and self-trust boundaries.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and migration
+      description: Note whether existing valid AINP v1.0.0 packages would stay valid, warn, or fail.
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Teeth and validation
+      description: List the negative fixture, positive example, schema test, or release gate that should prove the change.
+    validations:
+      required: true

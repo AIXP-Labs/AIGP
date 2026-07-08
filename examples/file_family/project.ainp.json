@@ -1,0 +1,45 @@
+{
+  "schema": "ainp.v1.0.0.generation_space",
+  "generation_space": {
+    "id": "gs_ainp_examples",
+    "title": "AINP example generation plans",
+    "generations": [
+      {
+        "ref": "whitepaper.generation.json",
+        "id": "g_whitepaper_ainp",
+        "sha256": "c4c0cd20e5ca8e4847d0c1f8d45dbc3bc1fa11109fd2bc2a9a5678b57d087a82",
+        "status": "draft"
+      },
+      {
+        "ref": "high_risk_likeness.generation.json",
+        "id": "g_portrait_illustration",
+        "sha256": "d2ca499d80470b1652859d58eba138ae0598c4748ff1bd4e9afa579541b67586",
+        "status": "under_review"
+      },
+      {
+        "ref": "landing_page.generation.json",
+        "id": "g_landing_page_launch",
+        "sha256": "672b3680b6421dd83cc7a6c895efbbd6b2f3fab2986918bce61856924ac1af22",
+        "status": "draft"
+      },
+      {
+        "ref": "dataset.generation.json",
+        "id": "g_protocol_adoption_dataset",
+        "sha256": "6b6432051217018f665cf250d7b6f45e6ff9a8cacd6e2f6a62fd6f067d17a5ec",
+        "status": "draft"
+      },
+      {
+        "ref": "medical_advice.generation.json",
+        "id": "g_medical_triage_article",
+        "sha256": "baaff9ffc38ba941cc5b3181b02496658c1cf9ee701dda97dbae15fbfb4eb753",
+        "status": "under_review"
+      },
+      {
+        "ref": "security_exploit.generation.json",
+        "id": "g_security_exploit_safe_lab",
+        "sha256": "828b9fd073f3de5a5e834c04ec5afa485bcb3699456cfbdf8a071efcc4866865",
+        "status": "under_review"
+      }
+    ]
+  }
+}

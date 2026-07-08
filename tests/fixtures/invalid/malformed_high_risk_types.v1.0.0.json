@@ -1,0 +1,6 @@
+{
+  "schema": "ainp.v1.0.0.high_risk_types",
+  "description": "Teeth fixture: profile is correct but artifact_types has the wrong shape. The validator must fail closed instead of silently degrading G6.",
+  "artifact_types": "deepfake",
+  "risk_tags": []
+}

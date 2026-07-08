@@ -1,0 +1,15 @@
+{
+  "schema": "ainp.v1.0.0.generation_space",
+  "generation_space": {
+    "id": "gs_whitepaper_project",
+    "title": "AINP whitepaper project package",
+    "generations": [
+      {
+        "ref": "whitepaper.generation.json",
+        "id": "g_whitepaper_ainp_pkg",
+        "sha256": "8bb79c1f144808e80a3f68afbb4214f51834b9b1e949f6e9cbe3d13f23bffb3e",
+        "status": "active"
+      }
+    ]
+  }
+}

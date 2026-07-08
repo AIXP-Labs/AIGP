@@ -1,0 +1,72 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_teeth",
+    "version": "1.0.0",
+    "title": "teeth fixture",
+    "summary": "negative fixture",
+    "summary": "duplicate key fixture",
+    "status": "draft",
+    "artifact_type": "document",
+    "brief": {
+      "goal": "g"
+    },
+    "acceptance_criteria": [
+      {
+        "id": "a1",
+        "description": "d",
+        "severity": "fail",
+        "verification": {
+          "method": "human",
+          "spec": "x"
+        }
+      }
+    ],
+    "risk_profile": {
+      "risk_level": "low",
+      "risk_tags": [],
+      "deployment_scope": "internal_draft"
+    },
+    "disclosure_policy": {
+      "ai_generated_disclosure_required": false
+    },
+    "governance": {
+      "status": "draft",
+      "risk_level": "low",
+      "review_required": false,
+      "approval_required": false,
+      "created_by": "operator_01"
+    },
+    "content_architecture": {
+      "root": "out/",
+      "directories": [
+        {
+          "id": "dir_out",
+          "path": "out/",
+          "purpose": "Generated fixture output"
+        }
+      ],
+      "files": [
+        {
+          "id": "file_fixture_artifact",
+          "path": "out/fixture_artifact.txt",
+          "type": "text",
+          "mime": "text/plain",
+          "role": "primary_artifact",
+          "required": true,
+          "summary": "Generic content artifact for validator fixture coverage",
+          "points": [
+            {
+              "id": "p1",
+              "order": 1,
+              "title": "Fixture content",
+              "requirements": [
+                "Declare at least one concrete content point."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

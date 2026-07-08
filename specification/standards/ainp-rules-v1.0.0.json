@@ -1,0 +1,207 @@
+{
+  "schema": "ainp.v1.0.0.rules_index",
+  "description": "Machine-readable index of AINP v1.0.0 conformance rules. Semantics are normative in specification/AINP_Protocol.md §10; this index is for tooling/dashboards.",
+  "plan_rules": [
+    {
+      "id": "G1",
+      "level": "fail",
+      "summary": "profile <-> payload key strong binding"
+    },
+    {
+      "id": "G2",
+      "level": "fail",
+      "summary": "required fields; semver version; closed enums; non-empty acceptance_criteria"
+    },
+    {
+      "id": "G3",
+      "level": "warn_strict_fail",
+      "summary": "artifact_type suggested-enum advisory"
+    },
+    {
+      "id": "G4",
+      "level": "fail",
+      "summary": "inputs source/rights/provenance; consent evidence discipline; tag consent mapping; rights consent_required requires a consent record"
+    },
+    {
+      "id": "G5",
+      "level": "fail",
+      "summary": "acceptance criteria shape; registered static check_id"
+    },
+    {
+      "id": "G6",
+      "level": "fail",
+      "summary": "risk_profile present; high-risk => approval_required (HSAW gate); artifact_type high-risk membership is case/separator-normalized; tags closed domain; self-declared high/critical risk_level gates; high_risk_types shape/non-empty data fail-closed"
+    },
+    {
+      "id": "G7",
+      "level": "fail",
+      "summary": "no self-declared artifact trust"
+    },
+    {
+      "id": "G8",
+      "level": "fail",
+      "summary": "disclosure_policy universally declared; tag disclosure mapping"
+    },
+    {
+      "id": "G9",
+      "level": "warn_strict_fail",
+      "summary": "bindings structure; execution protocol enum; local target existence"
+    },
+    {
+      "id": "G11",
+      "level": "fail",
+      "summary": "red-line constraints carry enforced_by control points"
+    },
+    {
+      "id": "G12",
+      "level": "warn_strict_fail",
+      "mode": "version-diff",
+      "summary": "acceptance/red-line change requires MAJOR bump"
+    },
+    {
+      "id": "G13",
+      "level": "fail",
+      "summary": "governance.risk_level derived, must match risk_profile"
+    },
+    {
+      "id": "G14",
+      "level": "warn_default_fail_strict_release",
+      "summary": "unverifiable never satisfies a red line"
+    },
+    {
+      "id": "G15",
+      "level": "fail_release",
+      "summary": "release: red lines need an operational control point"
+    },
+    {
+      "id": "G16",
+      "level": "fail",
+      "summary": "if content_architecture is declared, safe content root/files, unique file/point ids, ordered points and acceptance_refs bind to real criteria"
+    },
+    {
+      "id": "FB1",
+      "level": "fail",
+      "summary": "feedback binding + required fields"
+    },
+    {
+      "id": "SP1",
+      "level": "fail",
+      "summary": "space binding + ref/sha256"
+    },
+    {
+      "id": "SP2",
+      "level": "warn_strict_fail_plus_path_fail",
+      "summary": "space hash recompute; absolute or sandbox-escaping local refs fail"
+    }
+  ],
+  "report_rules": [
+    {
+      "id": "R1",
+      "level": "fail",
+      "summary": "profile binding"
+    },
+    {
+      "id": "R2",
+      "level": "fail",
+      "summary": "generation_id resolves to plan"
+    },
+    {
+      "id": "R3",
+      "level": "fail",
+      "summary": "artifacts id/path/mime/sha256; release recompute"
+    },
+    {
+      "id": "R4",
+      "level": "fail",
+      "summary": "results <-> criteria 1:1"
+    },
+    {
+      "id": "R5",
+      "level": "fail",
+      "summary": "evidence discipline per result; method/verifier/evidence shape and value domains"
+    },
+    {
+      "id": "R6",
+      "level": "fail",
+      "summary": "conformant derivable from fail-level results + disclosure/approval gates, never self-set"
+    },
+    {
+      "id": "R7",
+      "level": "fail",
+      "summary": "all required disclosure policy switches recorded as satisfied, including generator metadata and watermark evidence when declared"
+    },
+    {
+      "id": "R8",
+      "level": "fail",
+      "summary": "plan_ref hash lock (current or archived blob)"
+    },
+    {
+      "id": "R9",
+      "level": "fail",
+      "summary": "approval_required plans require report-side approval_gate evidence with legal method/evidence/verifier shape"
+    },
+    {
+      "id": "R10",
+      "level": "fail",
+      "summary": "report artifacts cover required plan content files via file_id and matching paths"
+    }
+  ],
+  "project_rules": [
+    {
+      "id": "P1",
+      "level": "fail",
+      "summary": "project root is an existing <name>_ainp directory"
+    },
+    {
+      "id": "P2",
+      "level": "fail",
+      "summary": "uppercase AINP.md required; lowercase ainp.md rejected"
+    },
+    {
+      "id": "P3",
+      "level": "fail",
+      "summary": "ainp/ AINP plan folder exists and matches AINP.md"
+    },
+    {
+      "id": "P4",
+      "level": "fail",
+      "summary": "<name>/ content directory exists and matches AINP.md"
+    },
+    {
+      "id": "P5",
+      "level": "fail",
+      "summary": "AINP.md frontmatter/body complete; paths are project-root relative and non-escaping"
+    },
+    {
+      "id": "P6",
+      "level": "fail",
+      "summary": "approved/active AINP.md feedback is required; feedback/optional space pass bundled JSON Schema and strict rule validation; feedback generation_id matches plan/report; issue file_id/point_id targets bind to plan content architecture"
+    },
+    {
+      "id": "P7",
+      "level": "fail",
+      "summary": "declared plan/report pass release gate with project root as artifact sandbox; report artifacts resolve under AINP.md content_dir"
+    },
+    {
+      "id": "P8",
+      "level": "fail",
+      "summary": "delegated release gate requires report overall.conformant=true; surfaced through release-family findings such as AINP_E_RELEASE_NOT_CONFORMANT rather than a dedicated P8 code"
+    },
+    {
+      "id": "P9",
+      "level": "fail",
+      "summary": "AINP.md must not self-declare artifact trust"
+    },
+    {
+      "id": "P10",
+      "level": "fail",
+      "summary": "complete project packages require plan content_architecture, and its root/files resolve under AINP.md content_dir"
+    },
+    {
+      "id": "P11",
+      "level": "warn_fail",
+      "summary": "optional ainp/references/ may contain protocol/spec snapshots, templates, briefs and other generation references; missing manifest warns, declared/present manifest must pass schema, local paths stay under ainp/references/, recorded local hashes recompute, and external_uri entries are not fetched or allowed to carry sha256 anchors"
+    }
+  ],
+  "note": "G10 was renumbered to R8 during plan V3."
+}

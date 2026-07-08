@@ -1,0 +1,15 @@
+{
+  "schema": "ainp.v1.0.0.generation_space",
+  "generation_space": {
+    "id": "gs_aikp_navigator_aiap_project",
+    "title": "AINP-governed AIAP Creator example project package",
+    "generations": [
+      {
+        "ref": "aikp_navigator_aiap.generation.json",
+        "id": "g_aikp_navigator_aiap",
+        "sha256": "b2098a855369b630f1ac03ee40dfcf711b1af03a61c08caaab7a4d535dc4fd6a",
+        "status": "active"
+      }
+    ]
+  }
+}

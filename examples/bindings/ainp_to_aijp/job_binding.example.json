@@ -1,0 +1,26 @@
+{
+  "example_profile": "ainp.example.cross_protocol_binding.v1.0.0",
+  "kind": "ainp_plan_to_aijp_job_outline",
+  "status": "non_normative_example",
+  "ainp_source": {
+    "protocol": "AINP v1.0.0",
+    "plan_ref": "../../whitepaper_ainp/ainp/whitepaper.generation.json",
+    "report_ref": "../../whitepaper_ainp/ainp/whitepaper.generationreport.json"
+  },
+  "aijp_job_outline": {
+    "job_id": "job_generate_whitepaper_from_ainp",
+    "steps": [
+      "read AINP plan as untrusted data",
+      "create declared content files under AINP.md.content_dir",
+      "run declared acceptance checks",
+      "write generationreport evidence",
+      "collect generationfeedback"
+    ],
+    "must_not": [
+      "auto-execute AINP bindings without authorization",
+      "treat plan validity as artifact trust",
+      "skip report hash recomputation"
+    ]
+  },
+  "honesty_boundary": "This file is an example job outline, not an AIJP schema and not a runtime execution record."
+}

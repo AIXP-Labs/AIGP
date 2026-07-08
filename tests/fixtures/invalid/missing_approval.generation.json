@@ -1,0 +1,173 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_portrait_illustration",
+    "version": "1.0.0",
+    "title": "Stylized portrait illustration of a consenting subject",
+    "summary": "Generate a stylized illustration based on a real person's reference portrait, with recorded consent, HSAW human approval gate, and mandatory AI-generation disclosure.",
+    "status": "under_review",
+    "source": "human",
+    "artifact_type": "image",
+    "artifact_subtype": "stylized_portrait",
+    "brief": {
+      "goal": "A single stylized portrait for the subject's own profile use",
+      "tone": "respectful, faithful to the subject",
+      "requirements": [
+        "stay within the consented usage scope (single generation, profile use)",
+        "no depiction beyond what the consent record covers"
+      ]
+    },
+    "audience": {
+      "primary": "the consenting subject (person_01)"
+    },
+    "structure": [
+      {
+        "id": "s1",
+        "title": "Portrait composition",
+        "kind": "component"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "in1",
+        "kind": "portrait_reference",
+        "source": {
+          "type": "local",
+          "uri": "local://subject/portrait_ref.jpg"
+        },
+        "rights": {
+          "status": "consent_recorded",
+          "license": null,
+          "holder": "person_01",
+          "evidence_ref": "consent/record-001.json"
+        },
+        "provenance": {
+          "status": "retrieved",
+          "retrieved_at": "2026-07-01",
+          "sha256": null,
+          "verified_by": null
+        },
+        "privacy": {
+          "contains_personal_data": true
+        },
+        "consent": {
+          "required": true,
+          "status": "recorded",
+          "subject_ref": "person_01",
+          "evidence_ref": "consent/record-001.json",
+          "scope": "single_generation",
+          "expires_at": "2026-12-31",
+          "verified_by": "human"
+        }
+      }
+    ],
+    "rights_policy": {
+      "default_status": "consent_required",
+      "reuse_requires": [
+        "owned",
+        "consent_recorded"
+      ]
+    },
+    "risk_profile": {
+      "risk_level": "high",
+      "risk_tags": [
+        "likeness"
+      ],
+      "deployment_scope": "limited",
+      "intended_audience": "the subject only (advisory)",
+      "rationale": "Real-person likeness generation: consent + human approval + disclosure are mandatory"
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "type": "approval",
+        "category": "sovereignty",
+        "scope": "distribution",
+        "severity": "fail",
+        "description": "Likeness generation must pass the HSAW human sovereignty gate before delivery.",
+        "enforced_by": [
+          {
+            "stage": "distribution_gate",
+            "mechanism": "runtime:hsaw_gate",
+            "assurance": "runtime",
+            "limitations": "Runtime gate; declaration existence is all the validator can prove."
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "type": "privacy",
+        "category": "consent_scope",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "No depiction beyond the consented scope; the artifact must stay within consent record-001.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:acceptance/a1",
+            "assurance": "evidence_recorded"
+          },
+          {
+            "stage": "external_review",
+            "mechanism": "external:consent-registry",
+            "assurance": "external_required",
+            "limitations": "Consent validity and scope interpretation require external/human review."
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "type": "disclosure",
+        "category": "transparency",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The artifact must carry a human-visible AI-generated label and machine-readable metadata.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:disclosure",
+            "assurance": "evidence_recorded"
+          }
+        ]
+      }
+    ],
+    "acceptance_criteria": [
+      {
+        "id": "a1",
+        "description": "A human reviewer confirms the artifact stays within the consented scope",
+        "severity": "fail",
+        "verification": {
+          "method": "human",
+          "spec": "human review against consent/record-001.json"
+        }
+      },
+      {
+        "id": "a2",
+        "description": "Disclosure policy is declared and recorded in the report",
+        "severity": "fail",
+        "verification": {
+          "method": "static",
+          "check_id": "disclosure.policy_declared",
+          "tool": "ainp_report_check"
+        }
+      }
+    ],
+    "disclosure_policy": {
+      "ai_generated_disclosure_required": true,
+      "human_visible_label_required": true,
+      "machine_readable_metadata_required": true,
+      "content_credential_required": true,
+      "removal_prohibited": true
+    },
+    "governance": {
+      "status": "under_review",
+      "risk_level": "high",
+      "review_required": true,
+      "approval_required": false,
+      "created_by": "operator_01"
+    },
+    "permission": {
+      "can_generate_artifact": true
+    }
+  }
+}

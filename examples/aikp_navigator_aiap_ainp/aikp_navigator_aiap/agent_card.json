@@ -1,0 +1,12 @@
+{
+  "schema": "aiap.example.agent_card.v1.0.0",
+  "name": "aikp_navigator_aiap",
+  "summary": "Local-only example agent that normalizes a topic into an AIKP navigation request.",
+  "capabilities": [
+    "normalize_topic",
+    "prepare_aikp_navigation_request"
+  ],
+  "runtime_boundary": "Example metadata only; AINP validation does not prove AIAP runtime execution.",
+  "network_access": false,
+  "credential_access": false
+}

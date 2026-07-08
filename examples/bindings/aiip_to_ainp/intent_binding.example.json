@@ -1,0 +1,16 @@
+{
+  "example_profile": "ainp.example.cross_protocol_binding.v1.0.0",
+  "kind": "aiip_intent_to_ainp_plan",
+  "status": "non_normative_example",
+  "intent": {
+    "id": "intent_generate_slugify_cli",
+    "summary": "Generate a small CLI project that slugifies text and includes tests."
+  },
+  "ainp_binding": {
+    "protocol": "AINP v1.0.0",
+    "plan_ref": "../../slugify_cli_ainp/ainp/slugify_cli.generation.json",
+    "project_package": "../../slugify_cli_ainp/",
+    "on_feedback": "revise_intent_if_generation_feedback_rejects_or_requests_major_scope_change"
+  },
+  "honesty_boundary": "This file is an example pointer from intent to AINP. It is not an AIIP schema, not an execution instruction, and not a trust proof."
+}

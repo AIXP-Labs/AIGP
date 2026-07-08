@@ -1,0 +1,74 @@
+{
+  "schema": "ainp.v1.0.0.generationreport",
+  "generationreport": {
+    "generation_id": "g_whitepaper_ainp_pkg",
+    "plan_ref": {
+      "path": "whitepaper.generation.json",
+      "sha256": "8bb79c1f144808e80a3f68afbb4214f51834b9b1e949f6e9cbe3d13f23bffb3e"
+    },
+    "artifacts": [
+      {
+        "id": "md",
+        "path": "whitepaper/whitepaper.md",
+        "mime": "text/markdown",
+        "sha256": "9d2e892a4382fce4cc0eb3e50f0eea659095c44f51e2f6c1b88271c3ca26ac36",
+        "file_id": "file_whitepaper_md"
+      }
+    ],
+    "acceptance_results": [
+      {
+        "criterion": "a1",
+        "passed": true,
+        "method": "static",
+        "evidence": [
+          {
+            "type": "structure_check",
+            "ref": "checks/structure.json",
+            "summary": "4/4 sections present and non-empty"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "structure-checker",
+          "version": "1.0.0"
+        },
+        "confidence": "high",
+        "limitations": "Checks section presence and non-emptiness only, not content quality."
+      },
+      {
+        "criterion": "a2",
+        "passed": true,
+        "method": "external",
+        "evidence": [
+          {
+            "type": "claim_trace",
+            "ref": "claims/check.json",
+            "summary": "Illustrative claims are either structural protocol descriptions or explicitly marked as example content."
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "citation-checker",
+          "version": "1.0.0"
+        },
+        "confidence": "medium",
+        "limitations": "Checks source traceability status only, not source truthfulness."
+      }
+    ],
+    "disclosure": {
+      "ai_generated": true,
+      "human_visible_label_present": true,
+      "machine_readable_metadata_present": true,
+      "content_credential": {
+        "present": false,
+        "verification_status": "unverified"
+      },
+      "limitations": "Label presence recorded; credential absent by policy (content_credential_required=false)."
+    },
+    "overall": {
+      "conformant": true,
+      "reason": "all fail-severity criteria passed and mandatory disclosure gates are recorded",
+      "warnings": []
+    }
+  }
+}

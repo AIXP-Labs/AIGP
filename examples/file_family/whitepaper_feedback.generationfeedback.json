@@ -1,0 +1,25 @@
+{
+  "schema": "ainp.v1.0.0.generationfeedback",
+  "generationfeedback": {
+    "generation_id": "g_whitepaper_ainp",
+    "source": "human",
+    "verdict": "revise",
+    "issues": [
+      {
+        "id": "f1",
+        "target": "point",
+        "field": "acceptance_results/a2",
+        "severity": "fail",
+        "description": "Three factual claims lack sources; add citations from inputs or mark the claims as pending verification.",
+        "file_id": "file_whitepaper_md",
+        "point_id": "p2"
+      }
+    ],
+    "suggested_changes": [
+      {
+        "field": "inputs",
+        "change": "Add the source references backing the three unsourced claims."
+      }
+    ]
+  }
+}

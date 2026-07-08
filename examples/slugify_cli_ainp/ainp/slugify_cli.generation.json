@@ -1,0 +1,281 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_slugify_cli_ainp",
+    "version": "1.0.0",
+    "title": "Slugify CLI Program",
+    "summary": "A stdlib-only Python CLI that converts input text into URL-safe slugs, packaged as a complete AINP program example.",
+    "status": "active",
+    "source": "agent",
+    "artifact_type": "code",
+    "artifact_subtype": "python_cli",
+    "brief": {
+      "goal": "Create a small, testable command-line program that turns text into lowercase ASCII slugs.",
+      "tone": "plain, maintainable, minimal",
+      "requirements": [
+        "use only the Python standard library",
+        "accept text from arguments or stdin",
+        "support a max-length option",
+        "include runnable unit tests and a README"
+      ]
+    },
+    "audience": {
+      "primary": "developers evaluating AINP for software generation"
+    },
+    "structure": [
+      {
+        "id": "s1",
+        "title": "Program README",
+        "kind": "component"
+      },
+      {
+        "id": "s2",
+        "title": "CLI implementation",
+        "kind": "module"
+      },
+      {
+        "id": "s3",
+        "title": "Unit tests",
+        "kind": "module"
+      }
+    ],
+    "rights_policy": {
+      "default_status": "owned",
+      "reuse_requires": [
+        "owned",
+        "licensed",
+        "public_domain",
+        "open_license"
+      ]
+    },
+    "risk_profile": {
+      "risk_level": "low",
+      "risk_tags": [],
+      "deployment_scope": "internal_draft",
+      "intended_audience": "developers and protocol implementers (advisory, not part of gate judgment)",
+      "rationale": "Small local CLI example with no network, credential, personal-data or deployment automation behavior."
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "type": "hard",
+        "category": "implementation",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The generated program must be stdlib-only and deterministic for the same input.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:acceptance/a1",
+            "assurance": "evidence_recorded",
+            "limitations": "Evidence records local tests and review only; it is not an independent security proof."
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "type": "safety",
+        "category": "local_execution",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The example CLI must not perform network access, file writes, subprocess launches or credential handling.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:acceptance/a2",
+            "assurance": "evidence_recorded",
+            "limitations": "Static review and tests cover this small example; they do not generalize to arbitrary generated programs."
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "type": "disclosure",
+        "category": "transparency",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The package must disclose that the program is AI-generated example content and that AINP validation is not a trust certificate.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:disclosure",
+            "assurance": "evidence_recorded"
+          }
+        ]
+      },
+      {
+        "id": "c4",
+        "type": "soft",
+        "category": "style",
+        "scope": "artifact",
+        "severity": "warn",
+        "description": "Keep the implementation short enough to inspect in one screen."
+      }
+    ],
+    "acceptance_criteria": [
+      {
+        "id": "a1",
+        "description": "The CLI converts punctuation, spacing and non-ASCII accents into stable lowercase ASCII slugs.",
+        "severity": "fail",
+        "verification": {
+          "method": "external",
+          "tool": "python-unittest",
+          "spec": "slugify_cli/tests/test_slugify_cli.py"
+        }
+      },
+      {
+        "id": "a2",
+        "description": "The implementation is stdlib-only and has no network, file-write, subprocess or credential behavior.",
+        "severity": "fail",
+        "verification": {
+          "method": "human",
+          "spec": "source review of slugify_cli/slugify_cli.py"
+        }
+      },
+      {
+        "id": "a3",
+        "description": "The program README documents how to run, test and interpret the example's honesty boundary.",
+        "severity": "fail",
+        "verification": {
+          "method": "human",
+          "spec": "README review"
+        }
+      }
+    ],
+    "disclosure_policy": {
+      "ai_generated_disclosure_required": true,
+      "human_visible_label_required": true,
+      "machine_readable_metadata_required": false,
+      "content_credential_required": false,
+      "watermark_required": false,
+      "removal_prohibited": true
+    },
+    "bindings": {
+      "execution_binding": {
+        "protocol": "external",
+        "target": "developer-workflow:stdlib-python-cli"
+      }
+    },
+    "governance": {
+      "status": "active",
+      "risk_level": "low",
+      "review_required": false,
+      "approval_required": false,
+      "created_by": "example_author"
+    },
+    "permission": {
+      "can_generate_artifact": true
+    },
+    "content_architecture": {
+      "root": "slugify_cli/",
+      "directories": [
+        {
+          "id": "dir_program",
+          "path": "slugify_cli/",
+          "purpose": "Generated Python CLI source, README and tests"
+        },
+        {
+          "id": "dir_tests",
+          "path": "slugify_cli/tests/",
+          "purpose": "Generated unit tests for the CLI"
+        }
+      ],
+      "files": [
+        {
+          "id": "file_readme",
+          "path": "slugify_cli/README.md",
+          "type": "markdown",
+          "mime": "text/markdown",
+          "role": "documentation",
+          "required": true,
+          "summary": "Program README with run commands, test command and honesty boundary",
+          "points": [
+            {
+              "id": "p_readme_run",
+              "order": 1,
+              "title": "Run and test instructions",
+              "requirements": [
+                "Show at least one argument-based CLI run command.",
+                "Show the unittest command for this example."
+              ],
+              "acceptance_refs": [
+                "a3"
+              ]
+            },
+            {
+              "id": "p_readme_boundary",
+              "order": 2,
+              "title": "Honesty boundary",
+              "requirements": [
+                "State that AINP evidence is not a security certification."
+              ],
+              "acceptance_refs": [
+                "a3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "file_cli",
+          "path": "slugify_cli/slugify_cli.py",
+          "type": "python_source",
+          "mime": "text/x-python",
+          "role": "primary_artifact",
+          "required": true,
+          "summary": "Stdlib-only slugify CLI implementation",
+          "points": [
+            {
+              "id": "p_cli_slugify",
+              "order": 1,
+              "title": "Slug normalization",
+              "requirements": [
+                "Normalize accents to ASCII where possible.",
+                "Convert punctuation and whitespace to single hyphens.",
+                "Return untitled for empty slug results."
+              ],
+              "acceptance_refs": [
+                "a1"
+              ]
+            },
+            {
+              "id": "p_cli_io",
+              "order": 2,
+              "title": "CLI input modes",
+              "requirements": [
+                "Accept text from positional arguments.",
+                "Read stdin when no positional text is provided.",
+                "Support a positive max-length option."
+              ],
+              "acceptance_refs": [
+                "a1",
+                "a2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "file_tests",
+          "path": "slugify_cli/tests/test_slugify_cli.py",
+          "type": "python_test",
+          "mime": "text/x-python",
+          "role": "test_artifact",
+          "required": true,
+          "summary": "Stdlib unittest coverage for normalization and CLI invocation",
+          "points": [
+            {
+              "id": "p_tests_behavior",
+              "order": 1,
+              "title": "Behavior coverage",
+              "requirements": [
+                "Cover normalization, fallback, max length, argument input and stdin input."
+              ],
+              "acceptance_refs": [
+                "a1"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

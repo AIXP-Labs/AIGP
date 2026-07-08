@@ -1,0 +1,68 @@
+{
+  "schema": "ainp.v1.0.0.generationreport",
+  "generationreport": {
+    "generation_id": "g_portrait_illustration",
+    "plan_ref": {
+      "path": "high_risk_likeness.generation.json",
+      "sha256": "cc02aa797346fb7b634c2503b5d7d22421f2684ddf98b1c486c037b94259033b"
+    },
+    "artifacts": [
+      {
+        "id": "png",
+        "path": "out/portrait.png",
+        "mime": "image/png",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ],
+    "acceptance_results": [
+      {
+        "criterion": "a1",
+        "passed": true,
+        "method": "human",
+        "evidence": [
+          {
+            "type": "review_note",
+            "summary": "claimed consent-scope review passed"
+          }
+        ],
+        "verifier": {
+          "type": "human",
+          "name": "reviewer_01"
+        },
+        "limitations": "Approval evidence intentionally absent."
+      },
+      {
+        "criterion": "a2",
+        "passed": true,
+        "method": "static",
+        "evidence": [
+          {
+            "type": "disclosure_check",
+            "summary": "claimed disclosure recorded"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "mock-disclosure-checker"
+        },
+        "limitations": "Fixture."
+      }
+    ],
+    "disclosure": {
+      "ai_generated": true,
+      "human_visible_label_present": true,
+      "machine_readable_metadata_present": true,
+      "content_credential": {
+        "present": true,
+        "type": "test-manifest",
+        "manifest_ref": "credentials/portrait.c2pa",
+        "verification_status": "externally_verified"
+      },
+      "limitations": "Self-contained fixture."
+    },
+    "overall": {
+      "conformant": true,
+      "warnings": []
+    }
+  }
+}

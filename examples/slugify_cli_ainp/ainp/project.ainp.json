@@ -1,0 +1,15 @@
+{
+  "schema": "ainp.v1.0.0.generation_space",
+  "generation_space": {
+    "id": "gs_slugify_cli_project",
+    "title": "AINP slugify CLI program project package",
+    "generations": [
+      {
+        "ref": "slugify_cli.generation.json",
+        "id": "g_slugify_cli_ainp",
+        "sha256": "b10ed770f0ce25a3fb593c022bc174f138415a686b3a9d33656a691a7d1f298e",
+        "status": "active"
+      }
+    ]
+  }
+}

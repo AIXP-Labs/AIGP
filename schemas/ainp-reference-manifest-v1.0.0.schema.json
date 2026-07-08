@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ainp.dev/schemas/ainp-reference-manifest-v1.0.0.schema.json",
+  "title": "AINP reference manifest (ainp.v1.0.0.reference_manifest)",
+  "description": "Optional manifest for files under ainp/references/: protocol/spec snapshots, templates, briefs, style guides, interface notes, policy excerpts and other generation reference materials. A valid manifest proves structure and local integrity anchors only; it is not a trust proof, freshness proof, legal proof or external authority proof. Standalone manifest P11 checks are enforced by tools/ainp_validate.py; complete project-package P11 placement and release wiring are enforced by tools/ainp_project_check.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "reference_manifest"],
+  "properties": {
+    "schema": { "const": "ainp.v1.0.0.reference_manifest" },
+    "reference_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "references"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string" },
+        "references": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/reference_item" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "reference_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "source", "purpose", "trust_boundary"],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source": {
+                "properties": {
+                  "type": { "const": "local_file" }
+                },
+                "required": ["type"]
+              }
+            },
+            "required": ["source"]
+          },
+          "then": {
+            "properties": {
+              "source": {
+                "required": ["path"],
+                "not": { "required": ["uri"] }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source": {
+                "properties": {
+                  "type": { "const": "external_uri" }
+                },
+                "required": ["type"]
+              }
+            },
+            "required": ["source"]
+          },
+          "then": {
+            "properties": {
+              "source": {
+                "required": ["uri"],
+                "not": { "required": ["path"] }
+              },
+              "sha256": { "type": "null" }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "kind": {
+          "enum": [
+            "protocol_spec",
+            "schema",
+            "template",
+            "brief",
+            "style_guide",
+            "interface_spec",
+            "research_material",
+            "policy",
+            "example",
+            "other"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": {
+            "type": { "enum": ["local_file", "external_uri"] },
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "description": "For local_file entries only, project-root relative path under ainp/references/. Checked by P11."
+            },
+            "uri": {
+              "type": "string",
+              "minLength": 1,
+              "description": "For external_uri entries only, a recorded external source identifier. Local tools do not fetch or verify it."
+            }
+          }
+        },
+        "sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "Integrity anchor for local_file entries only. P11 rejects sha256 on external_uri entries because local tools do not fetch them. It is not a trust credential."
+        },
+        "version": { "type": "string" },
+        "license": { "type": "string" },
+        "source_url": {
+          "type": "string",
+          "description": "Optional external origin hint. Local tools do not fetch or verify it."
+        },
+        "purpose": { "type": "string", "minLength": 1 },
+        "usage": { "type": "string" },
+        "trust_boundary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Required honesty statement, for example: integrity snapshot only; not a trust proof or latest-version proof."
+        }
+      }
+    }
+  }
+}

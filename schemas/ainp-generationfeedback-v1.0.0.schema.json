@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ainp.dev/schemas/ainp-generationfeedback-v1.0.0.schema.json",
+  "title": "AINP generation feedback (ainp.v1.0.0.generationfeedback)",
+  "description": "Feedback about generated content and its plan, from a human, agent or downstream consumer. Closes the plan -> content -> feedback -> revise loop. Structural rule FB1 is enforced by tools/ainp_validate.py; complete project packages additionally require feedback-loop alignment through tools/ainp_project_check.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "generationfeedback"],
+  "properties": {
+    "schema": { "const": "ainp.v1.0.0.generationfeedback" },
+    "generationfeedback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generation_id", "source", "verdict"],
+      "properties": {
+        "generation_id": { "type": "string", "minLength": 1 },
+        "source": { "enum": ["human", "agent", "consumer"] },
+        "verdict": { "enum": ["accept", "revise", "reject"] },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "description"],
+            "properties": {
+              "id": { "type": "string" },
+              "target": { "enum": ["plan", "artifact", "file", "point"] },
+              "file_id": { "type": "string",
+                "description": "Optional link to generation.content_architecture.files[].id; required by project checker when target=file or target=point." },
+              "point_id": { "type": "string",
+                "description": "Optional link to generation.content_architecture.files[].points[].id; project checker requires file_id with point_id." },
+              "field": { "type": "string" },
+              "severity": { "enum": ["fail", "warn", "info"] },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "suggested_changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["field", "change"],
+            "properties": {
+              "field": { "type": "string" },
+              "change": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

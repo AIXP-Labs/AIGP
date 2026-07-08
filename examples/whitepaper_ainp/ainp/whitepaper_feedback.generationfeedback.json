@@ -1,0 +1,24 @@
+{
+  "schema": "ainp.v1.0.0.generationfeedback",
+  "generationfeedback": {
+    "generation_id": "g_whitepaper_ainp_pkg",
+    "source": "human",
+    "verdict": "revise",
+    "issues": [
+      {
+        "id": "revise_honesty_boundary",
+        "target": "point",
+        "file_id": "file_whitepaper_md",
+        "point_id": "p2",
+        "severity": "warn",
+        "description": "Strengthen the governance and honesty section with an explicit reminder that feedback evidence does not prove external claim truth."
+      }
+    ],
+    "suggested_changes": [
+      {
+        "field": "generation.content_architecture.files[file_whitepaper_md].points[p2].requirements",
+        "change": "In the next plan revision, require a sentence separating feedback evidence from independent factual or legal verification."
+      }
+    ]
+  }
+}

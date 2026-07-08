@@ -1,0 +1,100 @@
+{
+  "schema": "ainp.v1.0.0.generationreport",
+  "generationreport": {
+    "generation_id": "g_portrait_illustration",
+    "plan_ref": {
+      "path": "high_risk_likeness.generation.json",
+      "sha256": "d2ca499d80470b1652859d58eba138ae0598c4748ff1bd4e9afa579541b67586"
+    },
+    "artifacts": [
+      {
+        "id": "portrait_png",
+        "path": "out/g_portrait_illustration.png",
+        "mime": "image/png",
+        "sha256": "4b5c5c92cec3b23e6a294fc0eea43234ef5126c5a64f4c6c531ac8430ab0b844",
+        "file_id": "file_portrait_png"
+      }
+    ],
+    "acceptance_results": [
+      {
+        "criterion": "a1",
+        "passed": true,
+        "method": "human",
+        "evidence": [
+          {
+            "type": "consent_scope_review",
+            "ref": "reviews/portrait-consent-scope.json",
+            "summary": "Human reviewer recorded that the artifact stayed within the declared single-generation profile-use consent scope."
+          }
+        ],
+        "verifier": {
+          "type": "human",
+          "name": "human-sovereignty-reviewer",
+          "identity_ref": "reviewers/hsaw-reviewer-001",
+          "timestamp": "2026-07-08T00:00:00Z"
+        },
+        "confidence": "medium",
+        "limitations": "Records review evidence shape only; local AINP tools do not prove consent validity or reviewer authority."
+      },
+      {
+        "criterion": "a2",
+        "passed": true,
+        "method": "static",
+        "evidence": [
+          {
+            "type": "disclosure_policy_check",
+            "ref": "checks/disclosure.json",
+            "summary": "The report records human-visible label, machine-readable metadata, and external content-credential verification status."
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "disclosure-checker",
+          "version": "1.0.0"
+        },
+        "confidence": "high",
+        "limitations": "Checks report fields only; it does not validate C2PA signatures, trust lists, or actual downstream label visibility."
+      }
+    ],
+    "disclosure": {
+      "ai_generated": true,
+      "human_visible_label_present": true,
+      "machine_readable_metadata_present": true,
+      "content_credential": {
+        "present": true,
+        "type": "C2PA-like example manifest",
+        "manifest_ref": "credentials/portrait-example-manifest.json",
+        "verification_status": "externally_verified"
+      },
+      "limitations": "Credential verification is recorded as external evidence; local AINP tools do not fetch or verify manifests, signatures, certificate chains, issuer policy, or trust lists."
+    },
+    "governance_results": {
+      "approval_gate": {
+        "required": true,
+        "passed": true,
+        "method": "human",
+        "evidence": [
+          {
+            "type": "hsaw_approval_record",
+            "ref": "approvals/hsaw-portrait-001.json",
+            "summary": "Human approval was recorded for consent-bounded, single-use profile delivery."
+          }
+        ],
+        "verifier": {
+          "type": "human",
+          "name": "human-approval-reviewer",
+          "identity_ref": "reviewers/hsaw-reviewer-001",
+          "timestamp": "2026-07-08T00:00:00Z"
+        },
+        "limitations": "Records approval evidence shape only; local AINP tools do not prove the approver's legal authority or the external record's authenticity."
+      }
+    },
+    "overall": {
+      "conformant": true,
+      "reason": "all fail-severity criteria passed and the mandatory approval/disclosure gates are recorded",
+      "warnings": [
+        "approval, consent and credential evidence remain externally trust-dependent"
+      ]
+    }
+  }
+}

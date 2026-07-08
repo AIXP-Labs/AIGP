@@ -1,0 +1,40 @@
+[project]
+name = "ainp-protocol-tools"
+version = "1.0.0"
+description = "Zero-dependency validation tooling for the AINP protocol repository."
+requires-python = ">=3.10"
+license = "Apache-2.0"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+# Runtime tools are zero-dependency. Dev dependencies are only needed to
+# exercise the machine-readable JSON Schemas and pytest discovery path in the
+# test suite. MkDocs dependencies are optional and only needed to render the
+# documentation site.
+[project.optional-dependencies]
+dev = [
+  "jsonschema>=4",
+  "pytest>=8",
+]
+docs = [
+  "mkdocs>=1.6",
+  "mkdocs-material>=9",
+]
+
+[project.scripts]
+ainp = "tools.ainp:main"
+ainp-validate = "tools.ainp_validate:main"
+ainp-report-check = "tools.ainp_report_check:main"
+ainp-release-check = "tools.ainp_release_check:main"
+ainp-project-check = "tools.ainp_project_check:main"
+ainp-rehash = "tools.ainp_rehash:main"
+ainp-check-doc-sync = "tools.check_doc_sync:main"
+ainp-check-markdown-links = "tools.check_markdown_links:main"
+
+[tool.setuptools]
+packages = ["tools"]
+
+[tool.ainp]
+protocol = "AINP v1.0.0"

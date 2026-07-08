@@ -1,0 +1,19 @@
+{
+  "schema": "ainp.v1.0.0.generationfeedback",
+  "generationfeedback": {
+    "generation_id": "g_slugify_cli_ainp",
+    "source": "human",
+    "verdict": "accept",
+    "issues": [
+      {
+        "id": "note_scope",
+        "target": "point",
+        "file_id": "file_readme",
+        "point_id": "p_readme_boundary",
+        "severity": "info",
+        "description": "The README correctly states that AINP validation is not a security certification."
+      }
+    ],
+    "suggested_changes": []
+  }
+}

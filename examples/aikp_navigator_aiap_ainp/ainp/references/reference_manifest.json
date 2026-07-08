@@ -1,0 +1,39 @@
+{
+  "schema": "ainp.v1.0.0.reference_manifest",
+  "reference_manifest": {
+    "id": "refs_aikp_navigator_aiap",
+    "title": "Reference materials for the AINP-governed AIAP package example",
+    "summary": "Protocol snapshot and package template used as local generation references.",
+    "references": [
+      {
+        "id": "aiap_protocol_reference",
+        "kind": "protocol_spec",
+        "source": {
+          "type": "local_file",
+          "path": "ainp/references/aiap_protocol_reference.md"
+        },
+        "sha256": "8423398d48e7dc80e3dee7b48c0f0e8fffd64579adba50bfdb2198bda45b885f",
+        "version": "1.0.0",
+        "license": "Apache-2.0",
+        "source_url": "https://github.com/AIXP-Labs/AIAP-Protocol/tree/main/specification",
+        "purpose": "Reference basis for the generated AIAP package declaration, agent card and AISOP-style candidate flow.",
+        "usage": "Read as local context when generating or reviewing the example AIAP package.",
+        "trust_boundary": "Integrity snapshot only; not a complete AIAP specification, latest-version proof, external trust proof or runtime execution proof."
+      },
+      {
+        "id": "aiap_package_template",
+        "kind": "template",
+        "source": {
+          "type": "local_file",
+          "path": "ainp/references/templates/aiap_package.template.md"
+        },
+        "sha256": "f77365845641c9c1bc65e2a48076dae8266283b5d054135770cd1047262c8a4a",
+        "version": "1.0.0",
+        "license": "Apache-2.0",
+        "purpose": "Local template for the expected generated AIAP package file set and boundary language.",
+        "usage": "Use as generation scaffolding; do not copy claims that are not true for the generated package.",
+        "trust_boundary": "Template integrity only; not a correctness proof, security proof, runtime proof or trust certificate."
+      }
+    ]
+  }
+}

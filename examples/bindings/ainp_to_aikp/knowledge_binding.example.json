@@ -1,0 +1,30 @@
+{
+  "example_profile": "ainp.example.cross_protocol_binding.v1.0.0",
+  "kind": "ainp_report_to_aikp_ingestion",
+  "status": "non_normative_example",
+  "knowledge_candidate": {
+    "id": "knowledge_slugify_cli_generation_lessons",
+    "summary": "Lessons learned from generating and testing the slugify CLI project."
+  },
+  "generated_from": {
+    "protocol": "AINP v1.0.0",
+    "project_package": "../../slugify_cli_ainp/",
+    "plan_ref": "../../slugify_cli_ainp/ainp/slugify_cli.generation.json",
+    "report_ref": "../../slugify_cli_ainp/ainp/slugify_cli.generationreport.json",
+    "feedback_ref": "../../slugify_cli_ainp/ainp/slugify_cli_feedback.generationfeedback.json"
+  },
+  "ingestion_policy": {
+    "may_store": [
+      "project structure decisions",
+      "acceptance criteria outcomes",
+      "test evidence references"
+    ],
+    "must_not_store_as_fact_without_external_review": [
+      "legal compliance",
+      "rights validity",
+      "approval authenticity",
+      "unverified factual claims"
+    ]
+  },
+  "honesty_boundary": "This file is an example AIKP ingestion pointer. It records provenance from AINP evidence but does not certify the content as factual knowledge."
+}

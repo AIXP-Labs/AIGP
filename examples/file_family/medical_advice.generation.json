@@ -1,0 +1,218 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_medical_triage_article",
+    "version": "1.0.0",
+    "title": "High-level medical triage education article",
+    "summary": "Generate a public educational article about when to seek urgent medical care, with no diagnosis, no individualized treatment plan, mandatory disclosure, and HSAW human approval.",
+    "status": "under_review",
+    "source": "hybrid",
+    "artifact_type": "document",
+    "artifact_subtype": "medical_education",
+    "brief": {
+      "goal": "Create a general educational article that explains warning signs requiring urgent medical attention.",
+      "tone": "calm, plain-language, non-diagnostic",
+      "requirements": [
+        "avoid diagnosis or individualized treatment recommendations",
+        "include emergency-care disclaimers",
+        "require human medical-domain review before publication"
+      ]
+    },
+    "audience": {
+      "primary": "general public"
+    },
+    "structure": [
+      {
+        "id": "s1",
+        "title": "When to seek urgent care",
+        "kind": "section"
+      },
+      {
+        "id": "s2",
+        "title": "What this article cannot do",
+        "kind": "section"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "in1",
+        "kind": "public_reference",
+        "source": {
+          "type": "external",
+          "uri": "https://example.org/public-health-guidance"
+        },
+        "rights": {
+          "status": "public_reference",
+          "license": null,
+          "holder": "external_public_source",
+          "evidence_ref": "source_review/public-health-guidance.md"
+        },
+        "provenance": {
+          "status": "external_verify_required",
+          "retrieved_at": "2026-07-06",
+          "sha256": null,
+          "verified_by": null
+        },
+        "privacy": {
+          "contains_personal_data": false
+        },
+        "consent": null
+      }
+    ],
+    "rights_policy": {
+      "default_status": "public_reference",
+      "reuse_requires": [
+        "public_reference",
+        "licensed",
+        "open_license"
+      ]
+    },
+    "risk_profile": {
+      "risk_level": "high",
+      "risk_tags": [
+        "medical_advice",
+        "regulated_domain"
+      ],
+      "deployment_scope": "public",
+      "intended_audience": "general public (advisory)",
+      "rationale": "Medical-advice and regulated-domain tags require human approval and disclosure before publication."
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "type": "approval",
+        "category": "sovereignty",
+        "scope": "distribution",
+        "severity": "fail",
+        "description": "Publication requires the HSAW human sovereignty gate and domain reviewer signoff.",
+        "enforced_by": [
+          {
+            "stage": "distribution_gate",
+            "mechanism": "runtime:hsaw_gate",
+            "assurance": "runtime",
+            "limitations": "Runtime gate; declaration existence is all the validator can prove."
+          },
+          {
+            "stage": "external_review",
+            "mechanism": "external:medical-domain-review",
+            "assurance": "externally_verified",
+            "limitations": "The validator records the required external review path but cannot authenticate the reviewer."
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "type": "safety",
+        "category": "medical_boundary",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The article must not provide diagnosis, dosage, or individualized treatment advice.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:acceptance/a1",
+            "assurance": "evidence_recorded"
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "type": "disclosure",
+        "category": "transparency",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The artifact must disclose AI generation and state that it is not medical advice.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:disclosure",
+            "assurance": "evidence_recorded"
+          }
+        ]
+      }
+    ],
+    "acceptance_criteria": [
+      {
+        "id": "a1",
+        "description": "A qualified human reviewer confirms no diagnosis, dosage, or individualized treatment advice is present.",
+        "severity": "fail",
+        "verification": {
+          "method": "human",
+          "spec": "domain review against medical_boundary checklist"
+        }
+      },
+      {
+        "id": "a2",
+        "description": "The article includes visible AI-generation and non-medical-advice disclosure.",
+        "severity": "fail",
+        "verification": {
+          "method": "static",
+          "check_id": "disclosure.policy_declared",
+          "tool": "ainp_report_check"
+        }
+      }
+    ],
+    "disclosure_policy": {
+      "ai_generated_disclosure_required": true,
+      "human_visible_label_required": true,
+      "machine_readable_metadata_required": true,
+      "content_credential_required": false,
+      "removal_prohibited": true
+    },
+    "governance": {
+      "status": "under_review",
+      "risk_level": "high",
+      "review_required": true,
+      "approval_required": true,
+      "created_by": "operator_01"
+    },
+    "permission": {
+      "can_generate_artifact": true
+    },
+    "content_architecture": {
+      "root": "out/g_medical_triage_article/",
+      "directories": [
+        {
+          "id": "dir_medical_article",
+          "path": "out/g_medical_triage_article/",
+          "purpose": "Generated medical education article output"
+        }
+      ],
+      "files": [
+        {
+          "id": "file_medical_article_md",
+          "path": "out/g_medical_triage_article/article.md",
+          "type": "markdown",
+          "mime": "text/markdown",
+          "role": "primary_artifact",
+          "required": true,
+          "summary": "High-level medical education article with required disclosures",
+          "points": [
+            {
+              "id": "p1",
+              "order": 1,
+              "title": "Non-diagnostic education",
+              "requirements": [
+                "Explain urgent-care warning signs without diagnosis, dosage, or individualized treatment advice."
+              ],
+              "acceptance_refs": [
+                "a1"
+              ]
+            },
+            {
+              "id": "p2",
+              "order": 2,
+              "title": "Disclosure and limitations",
+              "requirements": [
+                "State that the article is AI-generated educational content and not medical advice."
+              ],
+              "acceptance_refs": [
+                "a2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

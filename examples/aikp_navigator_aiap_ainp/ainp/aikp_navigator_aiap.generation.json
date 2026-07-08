@@ -1,0 +1,386 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_aikp_navigator_aiap",
+    "version": "1.0.0",
+    "title": "AIKP Navigator AIAP Package",
+    "summary": "An AIAP Creator style example: generate a small AIAP package and govern the generated files with AINP plan, report and feedback evidence.",
+    "status": "active",
+    "source": "agent",
+    "artifact_type": "code",
+    "artifact_subtype": "aiap_package",
+    "brief": {
+      "goal": "Generate a minimal AIAP package that routes a topic string into a normalized AIKP navigation request.",
+      "tone": "plain, inspectable, example-oriented",
+      "requirements": [
+        "include AIAP.md, agent_card.json and main.aisop.json",
+        "include a stdlib-only helper tool",
+        "include runnable unit tests",
+        "state the boundary between AINP governance and AIAP execution"
+      ]
+    },
+    "audience": {
+      "primary": "protocol implementers evaluating AIAP Creator integration with AINP"
+    },
+    "inputs": [
+      {
+        "id": "input_aiap_protocol_reference",
+        "kind": "protocol_spec",
+        "source": {
+          "type": "local_reference",
+          "uri": "ainp/references/aiap_protocol_reference.md"
+        },
+        "rights": {
+          "status": "open_license",
+          "license": "Apache-2.0",
+          "holder": "AIXP-Labs",
+          "evidence_ref": "ainp/references/reference_manifest.json#aiap_protocol_reference"
+        },
+        "provenance": {
+          "status": "retrieved",
+          "verified_by": "ainp-reference-manifest"
+        },
+        "privacy": {
+          "contains_personal_data": false
+        },
+        "consent": {
+          "required": false,
+          "status": "not_required"
+        }
+      },
+      {
+        "id": "input_aiap_package_template",
+        "kind": "template",
+        "source": {
+          "type": "local_reference",
+          "uri": "ainp/references/templates/aiap_package.template.md"
+        },
+        "rights": {
+          "status": "owned",
+          "license": "Apache-2.0",
+          "holder": "AINP example authors",
+          "evidence_ref": "ainp/references/reference_manifest.json#aiap_package_template"
+        },
+        "provenance": {
+          "status": "retrieved",
+          "verified_by": "ainp-reference-manifest"
+        },
+        "privacy": {
+          "contains_personal_data": false
+        },
+        "consent": {
+          "required": false,
+          "status": "not_required"
+        }
+      }
+    ],
+    "structure": [
+      {
+        "id": "s1",
+        "title": "AIAP package declaration",
+        "kind": "component"
+      },
+      {
+        "id": "s2",
+        "title": "Agent card and AISOP candidate flow",
+        "kind": "component"
+      },
+      {
+        "id": "s3",
+        "title": "Helper tool and tests",
+        "kind": "module"
+      }
+    ],
+    "rights_policy": {
+      "default_status": "owned",
+      "reuse_requires": [
+        "owned",
+        "licensed",
+        "public_domain",
+        "open_license"
+      ]
+    },
+    "risk_profile": {
+      "risk_level": "low",
+      "risk_tags": [],
+      "deployment_scope": "internal_draft",
+      "intended_audience": "developers and protocol implementers (advisory, not part of gate judgment)",
+      "rationale": "Small local example package with no network, credentials, personal data, automated deployment or external side effects."
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "type": "hard",
+        "category": "package_layout",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The generated content package must include AIAP.md, agent_card.json, main.aisop.json, README.md, a helper tool and unit tests.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:acceptance/a1",
+            "assurance": "evidence_recorded",
+            "limitations": "Evidence proves the example files exist and hash-lock; it does not prove AIAP runtime conformance."
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "type": "safety",
+        "category": "local_execution",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The helper tool must be stdlib-only and must not perform network access, file writes, subprocess launches or credential handling.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:acceptance/a2",
+            "assurance": "evidence_recorded",
+            "limitations": "Static review and unit tests cover this tiny helper only."
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "type": "disclosure",
+        "category": "transparency",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The package must disclose that AINP governs generation evidence and does not certify AIAP runtime execution or trust.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:disclosure",
+            "assurance": "evidence_recorded"
+          }
+        ]
+      }
+    ],
+    "acceptance_criteria": [
+      {
+        "id": "a1",
+        "description": "The generated AIAP package contains the declared files and each required file is represented in content_architecture and the report artifacts.",
+        "severity": "fail",
+        "verification": {
+          "method": "external",
+          "tool": "ainp_project_check.py",
+          "spec": "project package content architecture and report coverage"
+        }
+      },
+      {
+        "id": "a2",
+        "description": "The helper tool normalizes a topic into a deterministic navigation request and has unit-test coverage.",
+        "severity": "fail",
+        "verification": {
+          "method": "external",
+          "tool": "python-unittest",
+          "spec": "aikp_navigator_aiap/tests/test_resolve_topic.py"
+        }
+      },
+      {
+        "id": "a3",
+        "description": "The package documentation states that AINP validation is not AIAP runtime execution or trust certification.",
+        "severity": "fail",
+        "verification": {
+          "method": "human",
+          "spec": "README and AINP.md review"
+        }
+      }
+    ],
+    "disclosure_policy": {
+      "ai_generated_disclosure_required": true,
+      "human_visible_label_required": true,
+      "machine_readable_metadata_required": false,
+      "content_credential_required": false,
+      "watermark_required": false,
+      "removal_prohibited": true
+    },
+    "bindings": {
+      "aiip_binding": {
+        "protocol": "AIIP",
+        "intent": "Generate a minimal AIAP package for AIKP topic navigation."
+      },
+      "aijp_binding": {
+        "protocol": "AIJP",
+        "generate_worktree": true,
+        "target": "external://aiap-creator-example-job"
+      },
+      "execution_binding": {
+        "protocol": "external",
+        "target": "aiap-creator:example-run"
+      },
+      "aikp_binding": {
+        "protocol": "AIKP",
+        "focus": "external://aikp/patterns/aiap-package-generation"
+      }
+    },
+    "governance": {
+      "status": "active",
+      "risk_level": "low",
+      "review_required": false,
+      "approval_required": false,
+      "created_by": "example_author"
+    },
+    "permission": {
+      "can_generate_artifact": true
+    },
+    "content_architecture": {
+      "root": "aikp_navigator_aiap/",
+      "directories": [
+        {
+          "id": "dir_package",
+          "path": "aikp_navigator_aiap/",
+          "purpose": "Generated AIAP application package"
+        },
+        {
+          "id": "dir_tools",
+          "path": "aikp_navigator_aiap/tools/",
+          "purpose": "Generated helper tool"
+        },
+        {
+          "id": "dir_tests",
+          "path": "aikp_navigator_aiap/tests/",
+          "purpose": "Generated unit tests"
+        }
+      ],
+      "files": [
+        {
+          "id": "file_aiap_md",
+          "path": "aikp_navigator_aiap/AIAP.md",
+          "type": "markdown",
+          "mime": "text/markdown",
+          "role": "aiap_declaration",
+          "required": true,
+          "summary": "AIAP package declaration for the example navigator",
+          "points": [
+            {
+              "id": "p_aiap_boundary",
+              "order": 1,
+              "title": "Runtime boundary",
+              "requirements": [
+                "State that this generated file is an AIAP package declaration, not AINP evidence."
+              ],
+              "acceptance_refs": [
+                "a3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "file_agent_card",
+          "path": "aikp_navigator_aiap/agent_card.json",
+          "type": "json",
+          "mime": "application/json",
+          "role": "agent_metadata",
+          "required": true,
+          "summary": "Agent card metadata for the generated AIAP example",
+          "points": [
+            {
+              "id": "p_agent_card_identity",
+              "order": 1,
+              "title": "Identity and capabilities",
+              "requirements": [
+                "Declare a name, purpose and local-only capability list."
+              ],
+              "acceptance_refs": [
+                "a1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "file_main_flow",
+          "path": "aikp_navigator_aiap/main.aisop.json",
+          "type": "json",
+          "mime": "application/json",
+          "role": "candidate_flow",
+          "required": true,
+          "summary": "Minimal AISOP-style candidate flow descriptor",
+          "points": [
+            {
+              "id": "p_flow_no_auto_execute",
+              "order": 1,
+              "title": "No auto-execution claim",
+              "requirements": [
+                "Record the route shape without claiming that AINP executes it."
+              ],
+              "acceptance_refs": [
+                "a3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "file_tool",
+          "path": "aikp_navigator_aiap/tools/resolve_topic.py",
+          "type": "python_source",
+          "mime": "text/x-python",
+          "role": "helper_tool",
+          "required": true,
+          "summary": "Stdlib-only helper that normalizes a topic into an AIKP navigation request",
+          "points": [
+            {
+              "id": "p_tool_behavior",
+              "order": 1,
+              "title": "Topic normalization",
+              "requirements": [
+                "Normalize punctuation and spacing.",
+                "Return a deterministic JSON request.",
+                "Avoid network, file writes, subprocess and credential behavior."
+              ],
+              "acceptance_refs": [
+                "a2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "file_tests",
+          "path": "aikp_navigator_aiap/tests/test_resolve_topic.py",
+          "type": "python_test",
+          "mime": "text/x-python",
+          "role": "test_artifact",
+          "required": true,
+          "summary": "Stdlib unittest coverage for the helper tool",
+          "points": [
+            {
+              "id": "p_tests_behavior",
+              "order": 1,
+              "title": "Behavior coverage",
+              "requirements": [
+                "Cover normalization, fallback and command-line JSON output."
+              ],
+              "acceptance_refs": [
+                "a2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "file_readme",
+          "path": "aikp_navigator_aiap/README.md",
+          "type": "markdown",
+          "mime": "text/markdown",
+          "role": "documentation",
+          "required": true,
+          "summary": "Generated package README with run commands and honesty boundary",
+          "points": [
+            {
+              "id": "p_readme_usage",
+              "order": 1,
+              "title": "Usage and boundary",
+              "requirements": [
+                "Show how to run and test the helper.",
+                "State that AINP validation is not AIAP runtime certification."
+              ],
+              "acceptance_refs": [
+                "a2",
+                "a3"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

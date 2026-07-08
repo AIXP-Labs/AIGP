@@ -1,0 +1,61 @@
+{
+  "schema": "ainp.v1.0.0.generationreport",
+  "generationreport": {
+    "generation_id": "g_whitepaper_ainp",
+    "plan_ref": {
+      "path": "../../../examples/file_family/whitepaper.generation.json",
+      "sha256": "d4409a00b7b7acd11ec00ecffd9a41711e9f0e569175a75ac751d6cfecc02397"
+    },
+    "artifacts": [
+      {
+        "id": "md",
+        "path": "/outside/escape.bin",
+        "mime": "text/markdown",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ],
+    "acceptance_results": [
+      {
+        "criterion": "a1",
+        "passed": true,
+        "method": "static",
+        "evidence": [
+          {
+            "type": "structure_check",
+            "summary": "ok"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "ainp_report_check"
+        },
+        "limitations": "structure only"
+      },
+      {
+        "criterion": "a2",
+        "passed": true,
+        "method": "external",
+        "evidence": [
+          {
+            "type": "claim_trace",
+            "summary": "ok"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "citation-checker"
+        },
+        "limitations": "citation presence only"
+      }
+    ],
+    "disclosure": {
+      "ai_generated": true,
+      "human_visible_label_present": true
+    },
+    "overall": {
+      "conformant": true,
+      "reason": "all passed",
+      "warnings": []
+    }
+  }
+}

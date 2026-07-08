@@ -1,0 +1,19 @@
+{
+  "schema": "ainp.v1.0.0.generationfeedback",
+  "generationfeedback": {
+    "generation_id": "g_aikp_navigator_aiap",
+    "source": "human",
+    "verdict": "accept",
+    "issues": [
+      {
+        "id": "note_boundary",
+        "target": "point",
+        "file_id": "file_readme",
+        "point_id": "p_readme_usage",
+        "severity": "info",
+        "description": "The README correctly separates AINP governance evidence from AIAP runtime certification."
+      }
+    ],
+    "suggested_changes": []
+  }
+}

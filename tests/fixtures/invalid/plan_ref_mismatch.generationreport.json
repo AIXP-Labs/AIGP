@@ -1,0 +1,73 @@
+{
+  "schema": "ainp.v1.0.0.generationreport",
+  "generationreport": {
+    "generation_id": "g_whitepaper_ainp",
+    "plan_ref": {
+      "path": "../../../examples/file_family/whitepaper.generation.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "artifacts": [
+      {
+        "id": "md",
+        "path": "out/whitepaper.md",
+        "mime": "text/markdown",
+        "sha256": "494bcf5d22bbc9636d1d26e595ddb0a2115566aeee35e5a061e4bdc95ffe8e17"
+      }
+    ],
+    "acceptance_results": [
+      {
+        "criterion": "a1",
+        "passed": true,
+        "method": "static",
+        "evidence": [
+          {
+            "type": "structure_check",
+            "ref": "checks/structure.json",
+            "summary": "4/4 sections present and non-empty"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "ainp_report_check",
+          "version": "1.0.0"
+        },
+        "confidence": "high",
+        "limitations": "Checks section presence and non-emptiness only, not content quality."
+      },
+      {
+        "criterion": "a2",
+        "passed": false,
+        "method": "external",
+        "evidence": [
+          {
+            "type": "claim_trace",
+            "ref": "claims/check.json",
+            "summary": "3 factual claims have no traceable source"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "citation-checker",
+          "version": "1.0.0"
+        },
+        "confidence": "medium",
+        "limitations": "Checks citation presence only, not source truthfulness."
+      }
+    ],
+    "disclosure": {
+      "ai_generated": true,
+      "human_visible_label_present": true,
+      "machine_readable_metadata_present": true,
+      "content_credential": {
+        "present": false,
+        "verification_status": "unverified"
+      },
+      "limitations": "Label presence recorded; credential absent by policy (content_credential_required=false)."
+    },
+    "overall": {
+      "conformant": false,
+      "reason": "a2 failed: 3 factual claims without a traceable source",
+      "warnings": []
+    }
+  }
+}

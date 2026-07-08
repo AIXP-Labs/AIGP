@@ -1,0 +1,28 @@
+{
+  "example_profile": "ainp.example.cross_protocol_binding.v1.0.0",
+  "kind": "aiap_creator_run_governed_by_ainp",
+  "status": "non_normative_example",
+  "creator_run": {
+    "id": "creator_run_build_example_aiap",
+    "tool_family": "AIAP Creator",
+    "output_package_pattern": "<name>_aiap/"
+  },
+  "ainp_governance_package": {
+    "protocol": "AINP v1.0.0",
+    "package_pattern": "<name>_aiap_ainp/",
+    "required_parts": [
+      "AINP.md",
+      "ainp/<name>.generation.json",
+      "ainp/<name>.generationreport.json",
+      "ainp/<name>_feedback.generationfeedback.json",
+      "<name>_aiap/"
+    ]
+  },
+  "creator_requirements": [
+    "derive content_architecture from the AIAP package files to be generated",
+    "write acceptance criteria before generating the AIAP package",
+    "write report evidence after generation and tests",
+    "write feedback before marking the package approved or active"
+  ],
+  "honesty_boundary": "This file is a roadmap-style example, not an AIAP schema, not an AISOP runtime proof, and not a creator success certificate."
+}

@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ainp.dev/schemas/ainp-generationreport-v1.0.0.schema.json",
+  "title": "AINP generation report (ainp.v1.0.0.generationreport)",
+  "description": "Acceptance EVIDENCE for one generation run against one plan snapshot (locked by plan_ref.sha256). Acceptance verdicts live here, never in the plan. A report is an evidence container, not absolute truth. Hashes prove recomputable integrity only. Content credential, generator metadata and watermark fields record external evidence; local AINP tools do not validate C2PA manifests, signatures, trust lists, provider trust, or watermark detectability. Cross-checks (R1-R10) are enforced by tools/ainp_report_check.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "generationreport"],
+  "properties": {
+    "schema": { "const": "ainp.v1.0.0.generationreport" },
+    "generationreport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generation_id", "plan_ref", "artifacts", "acceptance_results", "overall"],
+      "properties": {
+        "generation_id": { "type": "string", "minLength": 1 },
+        "generator": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Generator identity metadata for external transparency regimes. Records who/what generated the artifact; it is not provider trust proof.",
+          "required": ["provider", "system", "content_id", "generated_at"],
+          "properties": {
+            "provider": { "type": "string", "minLength": 1,
+              "description": "Generation service/provider name as recorded by the report author." },
+            "system": { "type": "string", "minLength": 1,
+              "description": "Generating system, model or product identifier." },
+            "version": { "type": "string" },
+            "content_id": { "type": "string", "minLength": 1,
+              "description": "Content identifier for traceability and downstream labeling." },
+            "generated_at": { "type": "string", "minLength": 1,
+              "description": "Creation timestamp or timestamp evidence reference." },
+            "model_bom_ref": { "type": "string",
+              "description": "Optional reference to an external model card, ML-BOM or AI-BOM document; local tools do not fetch or verify it." }
+          }
+        },
+        "plan_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "sha256"],
+          "properties": {
+            "path": { "type": "string" },
+            "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$",
+              "description": "Locks the exact plan snapshot judged by this report. Integrity only, not trust." }
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "path", "mime", "sha256"],
+            "properties": {
+              "id": { "type": "string" },
+              "file_id": { "type": "string",
+                "description": "Optional link to generation.content_architecture.files[].id. R10 requires coverage for declared required files when the plan carries content_architecture." },
+              "path": { "type": "string" },
+              "mime": { "type": "string" },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$",
+                "description": "Recomputed in release mode inside the artifact sandbox. Integrity only, not safety or trust." }
+            }
+          }
+        },
+        "acceptance_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["criterion", "passed", "method", "evidence", "verifier", "limitations"],
+            "properties": {
+              "criterion": { "type": "string" },
+              "passed": { "type": "boolean" },
+              "method": { "enum": ["static", "external", "human"] },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["type", "summary"],
+                  "properties": {
+                    "type": { "type": "string" },
+                    "ref": { "type": "string" },
+                    "summary": { "type": "string" }
+                  }
+                }
+              },
+              "verifier": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["type", "name"],
+                "properties": {
+                  "type": { "enum": ["tool", "human", "external"] },
+                  "name": { "type": "string" },
+                  "version": { "type": "string" },
+                  "identity_ref": { "type": "string" },
+                  "timestamp": { "type": "string" }
+                }
+              },
+              "confidence": { "enum": ["high", "medium", "low"] },
+              "limitations": { "type": "string" }
+            }
+          }
+        },
+        "disclosure": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ai_generated": { "type": "boolean" },
+            "human_visible_label_present": { "type": "boolean" },
+            "machine_readable_metadata_present": { "type": "boolean" },
+            "watermarks": {
+              "type": "array",
+              "description": "Recorded watermark evidence. Presence and scheme are evidence records only; local AINP tools do not verify watermark robustness or detectability.",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["present", "scheme"],
+                "properties": {
+                  "artifact_id": { "type": "string" },
+                  "present": { "type": "boolean" },
+                  "scheme": { "type": "string", "minLength": 1 },
+                  "evidence_ref": { "type": "string" },
+                  "limitations": { "type": "string" }
+                }
+              }
+            },
+            "content_credential": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "present": { "type": "boolean",
+                  "description": "Records that a content credential or manifest reference is present. Presence is not trust." },
+                "type": { "type": "string",
+                  "description": "Free-text credential family, for example C2PA. Local tools do not validate the family-specific manifest format." },
+                "manifest_ref": { "type": "string",
+                  "description": "Recorded reference to an external manifest or credential; local tools do not fetch or verify it." },
+                "verification_status": { "enum": ["external_verify_required", "externally_verified", "unverified"],
+                  "description": "Recorded external verification status. Only externally_verified satisfies R7 when required, but local tools do not validate C2PA signatures, certificate chains, issuer policies, or trust lists." }
+              }
+            },
+            "limitations": { "type": "string" }
+          }
+        },
+        "governance_results": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "approval_gate": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["required", "passed", "method", "evidence", "verifier", "limitations"],
+              "properties": {
+                "required": { "type": "boolean" },
+                "passed": { "type": "boolean" },
+                "method": { "enum": ["human", "external"] },
+                "evidence": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["type", "summary"],
+                    "properties": {
+                      "type": { "type": "string" },
+                      "ref": { "type": "string" },
+                      "summary": { "type": "string" }
+                    }
+                  }
+                },
+                "verifier": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["type", "name"],
+                  "properties": {
+                    "type": { "enum": ["tool", "human", "external"] },
+                    "name": { "type": "string" },
+                    "version": { "type": "string" },
+                    "identity_ref": { "type": "string" },
+                    "timestamp": { "type": "string" }
+                  }
+                },
+                "limitations": { "type": "string" }
+              }
+            }
+          }
+        },
+        "overall": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["conformant"],
+          "properties": {
+            "conformant": { "type": "boolean",
+              "description": "DERIVED: all fail-severity criteria passed AND all mandatory gates satisfied. Never self-set (R6). Never pre-declared in the plan." },
+            "reason": { "type": "string" },
+            "warnings": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    }
+  }
+}

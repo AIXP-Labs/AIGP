@@ -1,0 +1,127 @@
+{
+  "schema": "ainp.v1.0.0.generationreport",
+  "generationreport": {
+    "generation_id": "g_aikp_navigator_aiap",
+    "plan_ref": {
+      "path": "aikp_navigator_aiap.generation.json",
+      "sha256": "b2098a855369b630f1ac03ee40dfcf711b1af03a61c08caaab7a4d535dc4fd6a"
+    },
+    "artifacts": [
+      {
+        "id": "aiap_md",
+        "path": "aikp_navigator_aiap/AIAP.md",
+        "mime": "text/markdown",
+        "sha256": "e579f400c21fda2a35b4dc38ea558002021bf7aaa21bb1901cd7b9d5d85f4f1e",
+        "file_id": "file_aiap_md"
+      },
+      {
+        "id": "agent_card",
+        "path": "aikp_navigator_aiap/agent_card.json",
+        "mime": "application/json",
+        "sha256": "ec283b9a4f546c37273cfa4430b5c06cf99d9d34f94fa83301211327bd13e773",
+        "file_id": "file_agent_card"
+      },
+      {
+        "id": "main_flow",
+        "path": "aikp_navigator_aiap/main.aisop.json",
+        "mime": "application/json",
+        "sha256": "8e36afae8aacd1c230f737d2b5f02d9f4621d82830b48f16980ca5534ecd2a77",
+        "file_id": "file_main_flow"
+      },
+      {
+        "id": "tool",
+        "path": "aikp_navigator_aiap/tools/resolve_topic.py",
+        "mime": "text/x-python",
+        "sha256": "858c73381f22c21e905029c6d821c43b2de7df2df2122f65e2ccdc865155dec9",
+        "file_id": "file_tool"
+      },
+      {
+        "id": "tests",
+        "path": "aikp_navigator_aiap/tests/test_resolve_topic.py",
+        "mime": "text/x-python",
+        "sha256": "3914e6cab20e06a329ba59d2a163203da0f10e8300b8d9f5e3ff78dc55c48f01",
+        "file_id": "file_tests"
+      },
+      {
+        "id": "readme",
+        "path": "aikp_navigator_aiap/README.md",
+        "mime": "text/markdown",
+        "sha256": "2726a09473b594d40ec44d25c3fabf6b65741afbf80baa9ee029cc2d55108c79",
+        "file_id": "file_readme"
+      }
+    ],
+    "acceptance_results": [
+      {
+        "criterion": "a1",
+        "passed": true,
+        "method": "external",
+        "evidence": [
+          {
+            "type": "project_check",
+            "ref": "tools/ainp_project_check.py",
+            "summary": "Project package check validates AINP.md, content_architecture, report artifact coverage and feedback-loop alignment."
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "ainp_project_check.py",
+          "version": "v1.0.0"
+        },
+        "confidence": "high",
+        "limitations": "Checks package wiring and hash-locks only; it does not prove AIAP runtime execution."
+      },
+      {
+        "criterion": "a2",
+        "passed": true,
+        "method": "external",
+        "evidence": [
+          {
+            "type": "unit_test",
+            "ref": "aikp_navigator_aiap/tests/test_resolve_topic.py",
+            "summary": "Unit tests cover topic normalization, fallback behavior and command-line JSON output."
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "python-unittest",
+          "version": "stdlib"
+        },
+        "confidence": "high",
+        "limitations": "Covers this tiny helper only; it is not a complete AIAP runtime test."
+      },
+      {
+        "criterion": "a3",
+        "passed": true,
+        "method": "human",
+        "evidence": [
+          {
+            "type": "documentation_review",
+            "ref": "AINP.md + aikp_navigator_aiap/README.md",
+            "summary": "Documentation states that AINP validation is generation governance evidence, not AIAP runtime certification or trust proof."
+          }
+        ],
+        "verifier": {
+          "type": "human",
+          "name": "example-reviewer"
+        },
+        "confidence": "medium",
+        "limitations": "Manual documentation review only."
+      }
+    ],
+    "disclosure": {
+      "ai_generated": true,
+      "human_visible_label_present": true,
+      "machine_readable_metadata_present": false,
+      "content_credential": {
+        "present": false,
+        "verification_status": "unverified"
+      },
+      "limitations": "The package discloses that it is an AI-generated example and that no runtime trust proof is claimed."
+    },
+    "overall": {
+      "conformant": true,
+      "reason": "all fail-severity criteria passed and mandatory disclosure gates are recorded",
+      "warnings": []
+    }
+  }
+}

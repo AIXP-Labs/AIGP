@@ -1,0 +1,194 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_whitepaper_ainp",
+    "version": "1.0.0",
+    "title": "AINP Protocol Whitepaper",
+    "summary": "A technical whitepaper introducing AINP to protocol adopters: positioning, file family, governance, and acceptance boundaries.",
+    "status": "draft",
+    "source": "agent",
+    "artifact_type": "document",
+    "artifact_subtype": "whitepaper",
+    "brief": {
+      "goal": "Enable a protocol engineer to understand and adopt AINP",
+      "tone": "technical, honest, non-hype",
+      "requirements": [
+        "explain positioning (plan is not intent, job, program, or artifact)",
+        "document the ainp.v1.0.0.* file family",
+        "give at least one full example",
+        "state governance and honesty boundaries"
+      ]
+    },
+    "audience": {
+      "primary": "protocol engineers / adopters"
+    },
+    "structure": [
+      {
+        "id": "s1",
+        "title": "Positioning",
+        "kind": "section"
+      },
+      {
+        "id": "s2",
+        "title": "File family and format",
+        "kind": "section"
+      },
+      {
+        "id": "s3",
+        "title": "Examples",
+        "kind": "section"
+      },
+      {
+        "id": "s4",
+        "title": "Governance and honesty boundaries",
+        "kind": "section"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "in1",
+        "kind": "reference",
+        "source": {
+          "type": "url",
+          "uri": "https://aisop.dev/spec"
+        },
+        "rights": {
+          "status": "public_reference",
+          "license": null,
+          "holder": null,
+          "evidence_ref": null
+        },
+        "provenance": {
+          "status": "external_verify_required",
+          "retrieved_at": null,
+          "sha256": null,
+          "verified_by": null
+        },
+        "privacy": {
+          "contains_personal_data": false
+        },
+        "consent": null
+      }
+    ],
+    "rights_policy": {
+      "default_status": "external_verify_required",
+      "reuse_requires": [
+        "owned",
+        "licensed",
+        "public_domain",
+        "open_license"
+      ]
+    },
+    "risk_profile": {
+      "risk_level": "low",
+      "risk_tags": [],
+      "deployment_scope": "internal_draft",
+      "intended_audience": "public technical readers (advisory, not part of gate judgment)",
+      "rationale": "Public-facing technical documentation, internal draft stage"
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "type": "hard",
+        "category": "factuality",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "No fabricated citations; every factual claim must be traceable to inputs or marked as pending verification.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:acceptance/a2",
+            "assurance": "evidence_recorded"
+          },
+          {
+            "stage": "external_review",
+            "mechanism": "external:fact-checker",
+            "assurance": "external_required",
+            "limitations": "Factual truth can only be verified externally."
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "type": "approval",
+        "category": "sovereignty",
+        "scope": "distribution",
+        "severity": "fail",
+        "condition": "Takes effect when high-risk (see risk_profile). In v1.0.0 condition is declarative text; validators check existence only, never evaluate.",
+        "description": "High-risk artifact classes must pass the HSAW human sovereignty gate before delivery.",
+        "enforced_by": [
+          {
+            "stage": "distribution_gate",
+            "mechanism": "runtime:hsaw_gate",
+            "assurance": "runtime",
+            "limitations": "Runtime gate; the validator proves the declaration exists, not that the gate fired."
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "type": "disclosure",
+        "category": "transparency",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "Human-facing output must be labeled as AI-generated.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:disclosure",
+            "assurance": "evidence_recorded"
+          }
+        ]
+      },
+      {
+        "id": "c4",
+        "type": "soft",
+        "category": "style",
+        "scope": "artifact",
+        "severity": "warn",
+        "description": "Prefer plain, non-hype language; avoid marketing superlatives."
+      }
+    ],
+    "acceptance_criteria": [
+      {
+        "id": "a1",
+        "description": "All four sections are produced and non-empty",
+        "severity": "fail",
+        "verification": {
+          "method": "static",
+          "check_id": "structure.sections_nonempty",
+          "tool": "ainp_report_check"
+        }
+      },
+      {
+        "id": "a2",
+        "description": "Every factual claim is traceable to a source",
+        "severity": "fail",
+        "verification": {
+          "method": "external",
+          "spec": "citation cross-check via an external registry / fact-checker"
+        }
+      }
+    ],
+    "bindings": {
+      "aiip_binding": {
+        "protocol": "AIIP v1.0.0",
+        "intent": "i_publish_ainp"
+      },
+      "execution_binding": {
+        "protocol": "AISOP",
+        "target": "programs/generate_document.aisop.json"
+      }
+    },
+    "governance": {
+      "status": "draft",
+      "risk_level": "low",
+      "review_required": false,
+      "approval_required": false,
+      "created_by": "operator_01"
+    },
+    "permission": {
+      "can_generate_artifact": true
+    }
+  }
+}

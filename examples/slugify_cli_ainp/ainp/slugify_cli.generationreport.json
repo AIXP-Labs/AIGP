@@ -1,0 +1,105 @@
+{
+  "schema": "ainp.v1.0.0.generationreport",
+  "generationreport": {
+    "generation_id": "g_slugify_cli_ainp",
+    "plan_ref": {
+      "path": "slugify_cli.generation.json",
+      "sha256": "b10ed770f0ce25a3fb593c022bc174f138415a686b3a9d33656a691a7d1f298e"
+    },
+    "artifacts": [
+      {
+        "id": "readme",
+        "path": "slugify_cli/README.md",
+        "mime": "text/markdown",
+        "sha256": "4cf9ba765a446732855a1da0898e26b7e48ce22d828784273e04dcb280fecfbc",
+        "file_id": "file_readme"
+      },
+      {
+        "id": "cli",
+        "path": "slugify_cli/slugify_cli.py",
+        "mime": "text/x-python",
+        "sha256": "d3623e1dfef23c8346f0877fdc016ba41e5e9dc423d8ff7f3c830e341da3c865",
+        "file_id": "file_cli"
+      },
+      {
+        "id": "tests",
+        "path": "slugify_cli/tests/test_slugify_cli.py",
+        "mime": "text/x-python",
+        "sha256": "e2cfb1430ff425cf9b243d447db07f1720ce672bb3f4232782f49e683dee5689",
+        "file_id": "file_tests"
+      }
+    ],
+    "acceptance_results": [
+      {
+        "criterion": "a1",
+        "passed": true,
+        "method": "external",
+        "evidence": [
+          {
+            "type": "unit_test",
+            "ref": "slugify_cli/tests/test_slugify_cli.py",
+            "summary": "Four unittest cases cover normalization, fallback, max length, argument input and stdin input."
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "python-unittest",
+          "version": "stdlib"
+        },
+        "confidence": "high",
+        "limitations": "Covers the included examples and CLI paths only; it is not exhaustive fuzzing."
+      },
+      {
+        "criterion": "a2",
+        "passed": true,
+        "method": "human",
+        "evidence": [
+          {
+            "type": "source_review",
+            "ref": "slugify_cli/slugify_cli.py",
+            "summary": "Source uses argparse, re, sys and unicodedata only; no network, file writes, subprocess calls or credential handling are present."
+          }
+        ],
+        "verifier": {
+          "type": "human",
+          "name": "example-reviewer"
+        },
+        "confidence": "medium",
+        "limitations": "Manual review of this small example only; it is not a formal static analysis certification."
+      },
+      {
+        "criterion": "a3",
+        "passed": true,
+        "method": "human",
+        "evidence": [
+          {
+            "type": "documentation_review",
+            "ref": "slugify_cli/README.md",
+            "summary": "README includes Run, Test and Boundary sections."
+          }
+        ],
+        "verifier": {
+          "type": "human",
+          "name": "example-reviewer"
+        },
+        "confidence": "medium",
+        "limitations": "Confirms the documented sections exist; it does not prove users will run the tool correctly."
+      }
+    ],
+    "disclosure": {
+      "ai_generated": true,
+      "human_visible_label_present": true,
+      "machine_readable_metadata_present": false,
+      "content_credential": {
+        "present": false,
+        "verification_status": "unverified"
+      },
+      "limitations": "The package README and AINP.md disclose the example boundary; no external content credential is claimed."
+    },
+    "overall": {
+      "conformant": true,
+      "reason": "all fail-severity criteria passed and mandatory disclosure gates are recorded",
+      "warnings": []
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "ainp.v1.0.0.generationreport",
+  "generationreport": {
+    "generation_id": "g_whitepaper_ainp",
+    "plan_ref": {
+      "path": "whitepaper.generation.json",
+      "sha256": "c4c0cd20e5ca8e4847d0c1f8d45dbc3bc1fa11109fd2bc2a9a5678b57d087a82"
+    },
+    "artifacts": [
+      {
+        "id": "md",
+        "path": "out/whitepaper.md",
+        "mime": "text/markdown",
+        "sha256": "37a11da5932d532de5121733f6261ac7cbf73902524004433cab083e69e63fdb",
+        "file_id": "file_whitepaper_md"
+      }
+    ],
+    "acceptance_results": [
+      {
+        "criterion": "a1",
+        "passed": true,
+        "method": "static",
+        "evidence": [
+          {
+            "type": "structure_check",
+            "ref": "checks/structure.json",
+            "summary": "4/4 sections present and non-empty"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "structure-checker",
+          "version": "1.0.0"
+        },
+        "confidence": "high",
+        "limitations": "Checks section presence and non-emptiness only, not content quality. Executed by the generation pipeline's own structure checker — the AINP reference tool (ainp_report_check) validates report structure/gates (R1-R10) and never executes acceptance checks."
+      },
+      {
+        "criterion": "a2",
+        "passed": false,
+        "method": "external",
+        "evidence": [
+          {
+            "type": "claim_trace",
+            "ref": "claims/check.json",
+            "summary": "3 factual claims have no traceable source"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "citation-checker",
+          "version": "1.0.0"
+        },
+        "confidence": "medium",
+        "limitations": "Checks citation presence only, not source truthfulness."
+      }
+    ],
+    "disclosure": {
+      "ai_generated": true,
+      "human_visible_label_present": true,
+      "machine_readable_metadata_present": true,
+      "content_credential": {
+        "present": false,
+        "verification_status": "unverified"
+      },
+      "limitations": "Label presence recorded; credential absent by policy (content_credential_required=false)."
+    },
+    "overall": {
+      "conformant": false,
+      "reason": "a2 failed: 3 factual claims without a traceable source",
+      "warnings": []
+    }
+  }
+}

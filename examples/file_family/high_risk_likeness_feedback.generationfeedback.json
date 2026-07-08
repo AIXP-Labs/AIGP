@@ -1,0 +1,19 @@
+{
+  "schema": "ainp.v1.0.0.generationfeedback",
+  "generationfeedback": {
+    "generation_id": "g_portrait_illustration",
+    "source": "human",
+    "verdict": "accept",
+    "issues": [
+      {
+        "id": "likeness_evidence_boundary",
+        "target": "point",
+        "file_id": "file_portrait_png",
+        "point_id": "p1",
+        "severity": "info",
+        "description": "Consent, approval and credential fields are recorded evidence, not independent trust proof."
+      }
+    ],
+    "suggested_changes": []
+  }
+}

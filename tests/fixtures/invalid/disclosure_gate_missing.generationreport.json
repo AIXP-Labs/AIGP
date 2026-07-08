@@ -1,0 +1,66 @@
+{
+  "schema": "ainp.v1.0.0.generationreport",
+  "generationreport": {
+    "generation_id": "g_whitepaper_ainp",
+    "plan_ref": {
+      "path": "whitepaper.generation.json",
+      "sha256": "d4409a00b7b7acd11ec00ecffd9a41711e9f0e569175a75ac751d6cfecc02397"
+    },
+    "artifacts": [
+      {
+        "id": "md",
+        "path": "out/whitepaper.md",
+        "mime": "text/markdown",
+        "sha256": "494bcf5d22bbc9636d1d26e595ddb0a2115566aeee35e5a061e4bdc95ffe8e17"
+      }
+    ],
+    "acceptance_results": [
+      {
+        "criterion": "a1",
+        "passed": true,
+        "method": "static",
+        "evidence": [
+          {
+            "type": "structure_check",
+            "summary": "claimed pass"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "structure-checker"
+        },
+        "limitations": "Fixture."
+      },
+      {
+        "criterion": "a2",
+        "passed": false,
+        "method": "external",
+        "evidence": [
+          {
+            "type": "claim_trace",
+            "summary": "claimed fail"
+          }
+        ],
+        "verifier": {
+          "type": "tool",
+          "name": "citation-checker"
+        },
+        "limitations": "Fixture."
+      }
+    ],
+    "disclosure": {
+      "ai_generated": true,
+      "human_visible_label_present": true,
+      "machine_readable_metadata_present": false,
+      "content_credential": {
+        "present": false,
+        "verification_status": "unverified"
+      },
+      "limitations": "Plan requires machine-readable metadata; false must FAIL R7."
+    },
+    "overall": {
+      "conformant": false,
+      "warnings": []
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "schema": "ainp.v1.0.0.generation",
+  "generation": {
+    "id": "g_protocol_adoption_dataset",
+    "version": "1.0.0",
+    "title": "Protocol adoption survey dataset (synthetic)",
+    "summary": "A synthetic dataset simulating protocol adoption survey responses for testing analytics pipelines; no real personal data.",
+    "status": "draft",
+    "source": "agent",
+    "artifact_type": "dataset",
+    "brief": {
+      "goal": "Provide a realistic but fully synthetic dataset for pipeline testing",
+      "tone": "n/a",
+      "requirements": [
+        "1000 synthetic response rows",
+        "no real personal data, no re-identifiable combinations",
+        "schema documented in a data dictionary"
+      ]
+    },
+    "audience": {
+      "primary": "internal analytics engineers"
+    },
+    "structure": [
+      {
+        "id": "s1",
+        "title": "Data dictionary",
+        "kind": "asset"
+      },
+      {
+        "id": "s2",
+        "title": "CSV payload",
+        "kind": "asset"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "in1",
+        "kind": "reference",
+        "source": {
+          "type": "url",
+          "uri": "https://example.org/open-survey-schema"
+        },
+        "rights": {
+          "status": "open_license",
+          "license": "CC-BY-4.0",
+          "holder": null,
+          "evidence_ref": null
+        },
+        "provenance": {
+          "status": "external_verify_required",
+          "retrieved_at": null,
+          "sha256": null,
+          "verified_by": null
+        },
+        "privacy": {
+          "contains_personal_data": false
+        },
+        "consent": null
+      }
+    ],
+    "rights_policy": {
+      "default_status": "open_license",
+      "reuse_requires": [
+        "owned",
+        "public_domain",
+        "open_license"
+      ]
+    },
+    "risk_profile": {
+      "risk_level": "low",
+      "risk_tags": [],
+      "deployment_scope": "internal_draft",
+      "intended_audience": "internal engineers (advisory)",
+      "rationale": "Synthetic data, internal use only"
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "type": "privacy",
+        "category": "synthetic_only",
+        "scope": "artifact",
+        "severity": "fail",
+        "description": "The dataset must be fully synthetic; no real personal data may enter.",
+        "enforced_by": [
+          {
+            "stage": "report_check",
+            "mechanism": "report:acceptance/a2",
+            "assurance": "evidence_recorded"
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "type": "soft",
+        "category": "quality",
+        "scope": "artifact",
+        "severity": "warn",
+        "description": "Prefer plausible distributions over uniform noise."
+      }
+    ],
+    "acceptance_criteria": [
+      {
+        "id": "a1",
+        "description": "Declared input rights are recorded for every input",
+        "severity": "fail",
+        "verification": {
+          "method": "static",
+          "check_id": "inputs.rights_declared",
+          "tool": "ainp_report_check"
+        }
+      },
+      {
+        "id": "a2",
+        "description": "A privacy scan finds no real personal data",
+        "severity": "fail",
+        "verification": {
+          "method": "external",
+          "spec": "external privacy scanner over the generated CSV"
+        }
+      }
+    ],
+    "disclosure_policy": {
+      "ai_generated_disclosure_required": false,
+      "human_visible_label_required": false,
+      "machine_readable_metadata_required": true,
+      "content_credential_required": false,
+      "removal_prohibited": false
+    },
+    "governance": {
+      "status": "draft",
+      "risk_level": "low",
+      "review_required": false,
+      "approval_required": false,
+      "created_by": "operator_01"
+    },
+    "permission": {
+      "can_generate_artifact": true
+    },
+    "content_architecture": {
+      "root": "out/",
+      "directories": [
+        {
+          "id": "dir_out",
+          "path": "out/",
+          "purpose": "Generated synthetic dataset and dictionary"
+        }
+      ],
+      "files": [
+        {
+          "id": "file_dataset_csv",
+          "path": "out/g_protocol_adoption_dataset.csv",
+          "type": "csv",
+          "mime": "text/csv",
+          "role": "primary_artifact",
+          "required": true,
+          "summary": "Synthetic protocol adoption survey response rows",
+          "points": [
+            {
+              "id": "p1",
+              "order": 1,
+              "title": "Synthetic rows",
+              "requirements": [
+                "Produce 1000 synthetic rows with no real personal data or re-identifiable combinations."
+              ],
+              "acceptance_refs": [
+                "a2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "file_dataset_dictionary_md",
+          "path": "out/g_protocol_adoption_dataset_dictionary.md",
+          "type": "markdown",
+          "mime": "text/markdown",
+          "role": "supporting_artifact",
+          "required": true,
+          "summary": "Data dictionary explaining columns and synthetic generation assumptions",
+          "points": [
+            {
+              "id": "p1",
+              "order": 1,
+              "title": "Dictionary",
+              "requirements": [
+                "Document each column, type, allowed values and synthetic-data caveat."
+              ],
+              "acceptance_refs": [
+                "a1"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
