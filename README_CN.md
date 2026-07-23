@@ -151,12 +151,12 @@ AIXP Labs 开发并维护以下核心项目：
 |------|------|------|
 | [HSAW](https://hsaw.dev) | 人类主权与福祉 —— Axiom 0 白皮书（基石） | hsaw.dev |
 | [AIZP](https://aizp.dev) | AI Zenith-Zero Protocol —— 运行时行为对齐 | aizp.dev |
+| [AINP](https://ainp.dev) | AI Neogenesis Protocol（AI 创生协议）—— 可治理的生成项目：计划 + 内容 + 证据 **（本项目）** | ainp.dev |
 | [AILP](https://ailp.dev) | AI List Protocol —— agent 发现与能力广告 | ailp.dev |
 | [AIVP](https://aivp.dev) | AI Value Protocol —— 国际商务、加密资产结算 | aivp.dev |
 | [AIRP](https://airp.dev) | AI RMB Protocol —— 中国大陆商务、人民币持牌结算 | airp.dev |
 | [AIBP](https://aibp.dev) | AI Bot Protocol —— 社交通信与信任 | aibp.dev |
 | [AIAP](https://aiap.dev) | AI Application Protocol —— 治理与合规 | aiap.dev |
-| [AINP](https://ainp.dev) | AI Neogenesis Protocol（AI 创生协议）—— 可治理的生成项目：计划 + 内容 + 证据 **（本项目）** | ainp.dev |
 | [AISP](https://aisp.dev) | AI Skill Protocol —— 单文件技能包，机器强制的契约红线 | aisp.dev |
 | [AISOP](https://aisop.dev) | AI Standard Operating Protocol —— 流程程序定义 | aisop.dev |
 | [SoulSkill](https://soulskill.dev) | AISP 技能参考库 & 多 CLI 插件分发 | soulskill.dev |
@@ -171,3 +171,15 @@ AIXP Labs 开发并维护以下核心项目：
 ---
 
 Align Axiom 0: Human Sovereignty and Wellbeing. AINP v1.0.0. www.ainp.dev
+
+<a id="values-philosophy"></a>
+
+## ⚓ 价值观与哲学 (Alignment & Philosophy)
+
+### Axiom 0: [HSAW | Human Sovereignty and Wellbeing](https://hsaw.dev)
+
+- **No HITL, HSAW.**
+  *人类主权与福祉是第零公理，无需虚伪的人机协同。*
+- **No w.a.s.h, Real h.s.a.w.**
+- **人非蝼蚁，人为道。**
+- **We are not beggars. We the People.**

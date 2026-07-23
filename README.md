@@ -188,12 +188,12 @@ AIXP Labs develops and maintains the following core projects:
 |---------|-------------|---------|
 | [HSAW](https://hsaw.dev) | Human Sovereignty and Wellbeing — Axiom 0 white paper (foundation) | hsaw.dev |
 | [AIZP](https://aizp.dev) | AI Zenith-Zero Protocol — runtime behavioral alignment | aizp.dev |
+| [AINP](https://ainp.dev) | AI Neogenesis Protocol — governable generation projects: plan + content + evidence **(this project)** | ainp.dev |
 | [AILP](https://ailp.dev) | AI List Protocol — agent discovery and capability advertising | ailp.dev |
 | [AIVP](https://aivp.dev) | AI Value Protocol — international commerce, crypto asset settlement | aivp.dev |
 | [AIRP](https://airp.dev) | AI RMB Protocol — Mainland China commerce, RMB licensed settlement | airp.dev |
 | [AIBP](https://aibp.dev) | AI Bot Protocol — social communication and trust | aibp.dev |
 | [AIAP](https://aiap.dev) | AI Application Protocol — governance and compliance | aiap.dev |
-| [AINP](https://ainp.dev) | AI Neogenesis Protocol — governable generation projects: plan + content + evidence **(this project)** | ainp.dev |
 | [AISP](https://aisp.dev) | AI Skill Protocol — single-file skills with machine-enforced contract red lines | aisp.dev |
 | [AISOP](https://aisop.dev) | AI Standard Operating Protocol — flow program definition | aisop.dev |
 | [SoulSkill](https://soulskill.dev) | AISP skill reference library & multi-CLI plugin distribution | soulskill.dev |
@@ -208,3 +208,15 @@ This specification and its reference tooling are **experimental** and provided f
 ---
 
 Align Axiom 0: Human Sovereignty and Wellbeing. AINP v1.0.0. www.ainp.dev
+
+<a id="alignment-philosophy"></a>
+
+## ⚓ Alignment & Philosophy
+
+### Axiom 0: [HSAW | Human Sovereignty and Wellbeing](https://hsaw.dev)
+
+- **No HITL, HSAW.**
+  *Human Sovereignty and Wellbeing is Axiom 0, requiring no hypocritical human-in-the-loop.*
+- **No w.a.s.h, Real h.s.a.w.**
+- **人非蝼蚁，人为道。**
+- **We are not beggars. We the People.**
